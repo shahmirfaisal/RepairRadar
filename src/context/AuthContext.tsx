@@ -18,6 +18,7 @@ interface Props {
 
 export const AuthContextProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null)
+  const [loadingCurrentUser, setLoadingCurrentUser] = useState(true)
 
   const getCurrentUser = async () => {
     try {
@@ -26,18 +27,25 @@ export const AuthContextProvider = ({ children }: Props) => {
     } catch (error) {
       setUser(null)
     }
+
+    setLoadingCurrentUser(false)
   }
 
   useEffect(() => {
     getCurrentUser()
 
     Hub.listen("auth", ({ payload: { event, data } }) => {
-      console.log(event, data)
+      console.log("EVENT DATA", event, data)
       if (event === "signIn") {
         setUser(formatUser(data.attributes))
       }
+      if (event === "signOut") {
+        setUser(null)
+      }
     })
   }, [])
+
+  if (loadingCurrentUser) return <div>Loading...</div>
 
   return (
     <AuthContext.Provider

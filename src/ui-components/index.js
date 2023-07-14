@@ -33,6 +33,7 @@ export { default as CTASection } from "./CTASection";
 export { default as Stat } from "./Stat";
 export { default as Features2x2 } from "./Features2x2";
 export { default as HeroLayout1 } from "./HeroLayout1";
+export { default as Onboarding1 } from "./Onboarding1";
 export { default as ItemCard } from "./ItemCard";
 export { default as HeroLayout2 } from "./HeroLayout2";
 export { default as LogIn } from "./LogIn";
