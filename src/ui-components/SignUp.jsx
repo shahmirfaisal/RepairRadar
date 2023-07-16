@@ -73,10 +73,12 @@ export default function SignUp(props) {
         {...getOverrideProps(overrides, "Frame 429")}
       >
         <TextField
-          width="759px"
+          width="unset"
           height="unset"
           label="Email"
-          shrink="0"
+          grow="1"
+          shrink="1"
+          basis="0"
           alignSelf="stretch"
           placeholder=""
           size="default"
@@ -100,11 +102,13 @@ export default function SignUp(props) {
         {...getOverrideProps(overrides, "Frame 430")}
       >
         <SelectField
-          width="759px"
+          width="unset"
           height="unset"
           label="Type"
           placeholder="Type"
-          shrink="0"
+          grow="1"
+          shrink="1"
+          basis="0"
           size="default"
           isDisabled={false}
           labelHidden={false}
@@ -126,10 +130,12 @@ export default function SignUp(props) {
         {...getOverrideProps(overrides, "Frame 431")}
       >
         <PasswordField
-          width="759px"
+          width="unset"
           height="unset"
           label="Password"
-          shrink="0"
+          grow="1"
+          shrink="1"
+          basis="0"
           placeholder=""
           size="default"
           isDisabled={false}

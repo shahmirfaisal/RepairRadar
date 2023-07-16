@@ -6,3 +6,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.stepper .step.active,
+.stepper .step.completed {
+  background-color: #161617;
+}
+
+.onboarding-map {
+  width: 100%;
+  height: 100%;
+}

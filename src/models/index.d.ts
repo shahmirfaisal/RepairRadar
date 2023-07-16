@@ -18,7 +18,7 @@ type EagerUser = {
   readonly type: string;
   readonly picture?: string | null;
   readonly latitude?: string | null;
-  readonly longitue?: string | null;
+  readonly longitude?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -35,7 +35,7 @@ type LazyUser = {
   readonly type: string;
   readonly picture?: string | null;
   readonly latitude?: string | null;
-  readonly longitue?: string | null;
+  readonly longitude?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

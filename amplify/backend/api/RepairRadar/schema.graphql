@@ -6,5 +6,6 @@ type User @model @auth(rules: [{allow: public}]) {
   type: String!
   picture: String
   latitude: String
-  longitue: String
+  longitude: String
 }
+ 

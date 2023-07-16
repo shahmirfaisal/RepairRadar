@@ -14,7 +14,7 @@ export default function LogIn(props) {
     <Flex
       gap="24px"
       direction="column"
-      width="unset"
+      width="824px"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -28,11 +28,12 @@ export default function LogIn(props) {
       <Flex
         gap="24px"
         direction="row"
-        width="772px"
+        width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
+        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 428")}
@@ -66,10 +67,12 @@ export default function LogIn(props) {
         {...getOverrideProps(overrides, "Frame 431")}
       >
         <PasswordField
-          width="772px"
+          width="unset"
           height="unset"
           label="Password"
-          shrink="0"
+          grow="1"
+          shrink="1"
+          basis="0"
           placeholder=""
           size="default"
           isDisabled={false}
@@ -80,9 +83,10 @@ export default function LogIn(props) {
         ></PasswordField>
       </Flex>
       <Button
-        width="772px"
+        width="unset"
         height="unset"
         shrink="0"
+        alignSelf="stretch"
         boxShadow="0px 4px 9px rgba(0, 0, 0, 0.25)"
         size="large"
         isDisabled={false}

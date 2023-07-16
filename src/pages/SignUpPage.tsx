@@ -64,16 +64,12 @@ const SignUpPage = () => {
           TextField38798040: {
             value: email,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value),
-            grow: "1",
-            shrink: "1"
+              setEmail(e.target.value)
           },
           SelectField: {
             value: type,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               setType(e.target.value),
-            grow: "1",
-            shrink: "1",
             children: (
               <>
                 <option value="Customer">Customer</option>,
@@ -84,9 +80,7 @@ const SignUpPage = () => {
           PasswordField: {
             value: password,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value),
-            grow: "1",
-            shrink: "1"
+              setPassword(e.target.value)
           },
           Button: {
             onClick: signupHandler

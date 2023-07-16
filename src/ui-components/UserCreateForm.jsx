@@ -29,7 +29,7 @@ export default function UserCreateForm(props) {
     type: "",
     picture: "",
     latitude: "",
-    longitue: "",
+    longitude: "",
   };
   const [userId, setUserId] = React.useState(initialValues.userId);
   const [name, setName] = React.useState(initialValues.name);
@@ -37,7 +37,7 @@ export default function UserCreateForm(props) {
   const [type, setType] = React.useState(initialValues.type);
   const [picture, setPicture] = React.useState(initialValues.picture);
   const [latitude, setLatitude] = React.useState(initialValues.latitude);
-  const [longitue, setLongitue] = React.useState(initialValues.longitue);
+  const [longitude, setLongitude] = React.useState(initialValues.longitude);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUserId(initialValues.userId);
@@ -46,7 +46,7 @@ export default function UserCreateForm(props) {
     setType(initialValues.type);
     setPicture(initialValues.picture);
     setLatitude(initialValues.latitude);
-    setLongitue(initialValues.longitue);
+    setLongitude(initialValues.longitude);
     setErrors({});
   };
   const validations = {
@@ -56,7 +56,7 @@ export default function UserCreateForm(props) {
     type: [{ type: "Required" }],
     picture: [],
     latitude: [],
-    longitue: [],
+    longitude: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -90,7 +90,7 @@ export default function UserCreateForm(props) {
           type,
           picture,
           latitude,
-          longitue,
+          longitude,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -151,7 +151,7 @@ export default function UserCreateForm(props) {
               type,
               picture,
               latitude,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.userId ?? value;
@@ -181,7 +181,7 @@ export default function UserCreateForm(props) {
               type,
               picture,
               latitude,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -211,7 +211,7 @@ export default function UserCreateForm(props) {
               type,
               picture,
               latitude,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -241,7 +241,7 @@ export default function UserCreateForm(props) {
               type: value,
               picture,
               latitude,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -271,7 +271,7 @@ export default function UserCreateForm(props) {
               type,
               picture: value,
               latitude,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.picture ?? value;
@@ -301,7 +301,7 @@ export default function UserCreateForm(props) {
               type,
               picture,
               latitude: value,
-              longitue,
+              longitude,
             };
             const result = onChange(modelFields);
             value = result?.latitude ?? value;
@@ -317,10 +317,10 @@ export default function UserCreateForm(props) {
         {...getOverrideProps(overrides, "latitude")}
       ></TextField>
       <TextField
-        label="Longitue"
+        label="Longitude"
         isRequired={false}
         isReadOnly={false}
-        value={longitue}
+        value={longitude}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -331,20 +331,20 @@ export default function UserCreateForm(props) {
               type,
               picture,
               latitude,
-              longitue: value,
+              longitude: value,
             };
             const result = onChange(modelFields);
-            value = result?.longitue ?? value;
+            value = result?.longitude ?? value;
           }
-          if (errors.longitue?.hasError) {
-            runValidationTasks("longitue", value);
+          if (errors.longitude?.hasError) {
+            runValidationTasks("longitude", value);
           }
-          setLongitue(value);
+          setLongitude(value);
         }}
-        onBlur={() => runValidationTasks("longitue", longitue)}
-        errorMessage={errors.longitue?.errorMessage}
-        hasError={errors.longitue?.hasError}
-        {...getOverrideProps(overrides, "longitue")}
+        onBlur={() => runValidationTasks("longitude", longitude)}
+        errorMessage={errors.longitude?.errorMessage}
+        hasError={errors.longitude?.hasError}
+        {...getOverrideProps(overrides, "longitude")}
       ></TextField>
       <Flex
         justifyContent="space-between"

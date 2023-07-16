@@ -17,3 +17,10 @@ interface User {
   latitude: string | undefined
   longitude: string | undefined
 }
+
+interface AuthContextType {
+  user: User | null
+  authUser: any
+  setPicture: (picture: string) => void
+  setLocation: (location: LocationType) => void
+}

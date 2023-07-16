@@ -14,6 +14,15 @@
     "categories": {
       "auth": {
         "repairradar38847973": {}
+      },
+      "api": {
+        "RepairRadar": {}
+      },
+      "storage": {
+        "s3repairradarstorage25cc0337": {}
+      },
+      "geo": {
+        "map8f0e7099": {}
       }
     }
   }

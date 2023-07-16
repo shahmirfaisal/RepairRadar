@@ -19,7 +19,7 @@ export declare type UserCreateFormInputValues = {
     type?: string;
     picture?: string;
     latitude?: string;
-    longitue?: string;
+    longitude?: string;
 };
 export declare type UserCreateFormValidationValues = {
     userId?: ValidationFunction<string>;
@@ -28,7 +28,7 @@ export declare type UserCreateFormValidationValues = {
     type?: ValidationFunction<string>;
     picture?: ValidationFunction<string>;
     latitude?: ValidationFunction<string>;
-    longitue?: ValidationFunction<string>;
+    longitude?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserCreateFormOverridesProps = {
@@ -39,7 +39,7 @@ export declare type UserCreateFormOverridesProps = {
     type?: PrimitiveOverrideProps<TextFieldProps>;
     picture?: PrimitiveOverrideProps<TextFieldProps>;
     latitude?: PrimitiveOverrideProps<TextFieldProps>;
-    longitue?: PrimitiveOverrideProps<TextFieldProps>;
+    longitude?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserCreateFormProps = React.PropsWithChildren<{
     overrides?: UserCreateFormOverridesProps | undefined | null;

@@ -50,5 +50,30 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "geo": {
+    "map8f0e7099": {
+      "accessType": "AuthorizedUsers",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "repairradar38847973"
+        }
+      ],
+      "isDefault": true,
+      "mapStyle": "VectorEsriStreets",
+      "providerPlugin": "awscloudformation",
+      "service": "Map"
+    }
+  },
+  "storage": {
+    "s3repairradarstorage25cc0337": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
   }
 }

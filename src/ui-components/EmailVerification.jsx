@@ -14,7 +14,7 @@ export default function EmailVerification(props) {
     <Flex
       gap="24px"
       direction="column"
-      width="unset"
+      width="827px"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -28,11 +28,12 @@ export default function EmailVerification(props) {
       <Flex
         gap="24px"
         direction="row"
-        width="772px"
+        width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
+        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 428")}
@@ -53,9 +54,10 @@ export default function EmailVerification(props) {
         ></TextField>
       </Flex>
       <Button
-        width="772px"
+        width="unset"
         height="unset"
         shrink="0"
+        alignSelf="stretch"
         boxShadow="0px 4px 9px rgba(0, 0, 0, 0.25)"
         size="large"
         isDisabled={false}

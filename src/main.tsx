@@ -5,6 +5,8 @@ import { AmplifyProvider } from "@aws-amplify/ui-react"
 import { Amplify } from "aws-amplify"
 import awsmobile from "./aws-exports.js"
 import "@aws-amplify/ui-react/styles.css"
+import "@aws-amplify/ui-react-geo/styles.css"
+import "leaflet/dist/leaflet.css"
 import { studioTheme } from "./ui-components"
 import { BrowserRouter } from "react-router-dom"
 

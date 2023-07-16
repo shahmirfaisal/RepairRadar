@@ -1256,7 +1256,7 @@ export default createTheme({
         inverse: { value: "{colors.white.value}" },
         interactive: { value: "{colors.brand.primary.80.value}" },
         hover: { value: "{colors.brand.primary.90.value}" },
-        focus: { value: "{colors.brand.primary.100.value}" },
+        focus: { value: "hsl(0, 0%, 28%)" },
         active: { value: "{colors.brand.primary.100.value}" },
         info: { value: "{colors.blue.90.value}" },
         warning: { value: "{colors.orange.90.value}" },

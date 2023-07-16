@@ -48,25 +48,18 @@ const LogInPage = () => {
       <LogIn
         width="100%"
         overrides={{
-          "Frame 428": {
-            width: "100%"
-          },
           TextField: {
             value: email,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
           },
           PasswordField: {
-            width: "unset",
-            grow: "1",
-            shrink: "1",
             value: password,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
           },
           Button: {
-            onClick: loginHandler,
-            width: "100%"
+            onClick: loginHandler
           }
         }}
       />

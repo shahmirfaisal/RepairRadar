@@ -52,8 +52,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "longitue": {
-                    "name": "longitue",
+                "longitude": {
+                    "name": "longitude",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -105,5 +105,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "423e07b66ca2effa5612a539217e3840"
+    "version": "4280272278a22101282450c8d6082ffc"
 };

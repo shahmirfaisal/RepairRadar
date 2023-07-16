@@ -50,17 +50,13 @@ const EmailVerificationPage = () => {
       <EmailVerification
         width="100%"
         overrides={{
-          "Frame 428": {
-            width: "100%"
-          },
           TextField: {
             value: code,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               setCode(e.target.value)
           },
           Button: {
-            onClick: verificationHandler,
-            width: "100%"
+            onClick: verificationHandler
           }
         }}
       />

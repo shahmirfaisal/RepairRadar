@@ -16,5 +16,19 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "geo": {
+    "map8f0e7099": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string",
+      "Style": "string"
+    }
+  },
+  "storage": {
+    "s3repairradarstorage25cc0337": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

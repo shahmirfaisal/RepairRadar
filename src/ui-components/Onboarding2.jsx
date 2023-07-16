@@ -7,21 +7,21 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Heading, Text } from "@aws-amplify/ui-react";
-export default function Onboarding1(props) {
-  const { overrides, ...rest } = props;
+import { Button, Flex, Heading, Image, Text } from "@aws-amplify/ui-react";
+export default function Onboarding2(props) {
+  const { image, overrides, ...rest } = props;
   return (
     <Flex
       gap="16px"
       direction="column"
       width="unset"
-      height="234px"
+      height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Onboarding1")}
+      {...getOverrideProps(overrides, "Onboarding2")}
       {...rest}
     >
       <Flex
@@ -42,19 +42,35 @@ export default function Onboarding1(props) {
           height="unset"
           shrink="0"
           level="1"
-          children="Welcome Shahmir!"
+          children="Upload Profile Picture"
           {...getOverrideProps(overrides, "Heading")}
         ></Heading>
+        <Image
+          width="96px"
+          height="96px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          shrink="0"
+          position="relative"
+          borderRadius="160px"
+          padding="0px 0px 0px 0px"
+          objectFit="cover"
+          src={image}
+          {...getOverrideProps(overrides, "image")}
+        ></Image>
         <Text
           fontFamily="Inter"
           fontSize="16px"
           fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="center"
+          color="rgba(13,26,38,1)"
+          lineHeight="22px"
+          textAlign="left"
           display="block"
           direction="column"
           justifyContent="unset"
+          textDecoration="underline"
           width="unset"
           height="unset"
           gap="unset"
@@ -63,11 +79,8 @@ export default function Onboarding1(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Get ready to connect with customers and grow your business."
-          {...getOverrideProps(
-            overrides,
-            "Get ready to connect with customers and grow your business."
-          )}
+          children="Upload New Image"
+          {...getOverrideProps(overrides, "Upload New Image")}
         ></Text>
         <Button
           width="unset"
@@ -76,7 +89,7 @@ export default function Onboarding1(props) {
           size="large"
           isDisabled={false}
           variation="primary"
-          children="Let’s Setup Your Profile"
+          children="Save"
           {...getOverrideProps(overrides, "Button")}
         ></Button>
       </Flex>
