@@ -18,6 +18,10 @@ interface User {
   longitude: string | undefined
 }
 
+interface UserModel extends User {
+  userId: string
+}
+
 interface AuthContextType {
   user: User | null
   authUser: any

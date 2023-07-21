@@ -49,7 +49,6 @@ const Onboarding3 = ({ saveLocationHandler }: Props) => {
           center={[51.505, -0.09]}
           zoom={13}
           scrollWheelZoom={false}
-          className="onboarding-map"
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

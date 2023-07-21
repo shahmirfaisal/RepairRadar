@@ -17,7 +17,7 @@ const steps = [
 
 const OnboardingPage = () => {
   const { user, authUser, setPicture, setLocation } = useAuth()
-  const [activeStep, setActiveStep] = useState(2)
+  const [activeStep, setActiveStep] = useState(0)
   const [image, setImage] = useState("/blank-profile-picture.webp")
   const [imageFile, setImageFile] = useState<File | null>(null)
 
@@ -41,8 +41,15 @@ const OnboardingPage = () => {
 
   const uploadImageHandler = useCallback(async () => {
     try {
-      await Storage.put(user!.id, imageFile!)
-      const url = await Storage.get(user!.id)
+      const { key } = await Storage.put(
+        `${user!.id}.${imageFile?.type?.split("/")?.[1]}`,
+        imageFile!
+      )
+
+      // const url = await Storage.get(
+      //   `${user!.id}.${imageFile?.type?.split("/")?.[1]}`
+      // )
+      const url = `https://repairradar-storage-25cc0337152716-staging.s3.eu-north-1.amazonaws.com/public/${key}`
       const originalUser = await DataStore.query(User, (u) =>
         u.userId.eq(user!.id)
       )

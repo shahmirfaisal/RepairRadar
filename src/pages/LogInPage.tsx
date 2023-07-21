@@ -24,8 +24,9 @@ const LogInPage = () => {
 
   const loginHandler = async () => {
     try {
+      console.log("LOGIN")
       const user = await Auth.signIn(email, password)
-
+      console.log(user)
       toast.success("Logged in successfully!")
     } catch (error) {
       if (error.message.includes("User is not confirmed")) {
