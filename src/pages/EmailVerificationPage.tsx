@@ -42,7 +42,7 @@ const EmailVerificationPage = () => {
   }
 
   return (
-    <AuthLayout>
+    <>
       <Heading level={2}>Verify Your Email</Heading>
       <Text margin="20px 0 40px 0">
         We sent a code to {email}. Put it below.
@@ -67,7 +67,7 @@ const EmailVerificationPage = () => {
           Resend
         </Button>
       </Text>
-    </AuthLayout>
+    </>
   )
 }
 

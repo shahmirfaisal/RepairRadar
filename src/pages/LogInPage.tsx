@@ -24,9 +24,7 @@ const LogInPage = () => {
 
   const loginHandler = async () => {
     try {
-      console.log("LOGIN")
       const user = await Auth.signIn(email, password)
-      console.log(user)
       toast.success("Logged in successfully!")
     } catch (error) {
       if (error.message.includes("User is not confirmed")) {
@@ -43,7 +41,7 @@ const LogInPage = () => {
   }
 
   return (
-    <AuthLayout>
+    <>
       <Heading level={2}>Welcome Back!</Heading>
       <Text margin="20px 0 40px 0">Find Trusted Mechanics Near You.</Text>
       <LogIn
@@ -68,7 +66,7 @@ const LogInPage = () => {
       <Text marginTop="20px">
         <Link to="/signup">Don't have an account? SignUp</Link>
       </Text>
-    </AuthLayout>
+    </>
   )
 }
 

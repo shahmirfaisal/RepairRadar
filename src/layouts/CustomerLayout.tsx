@@ -1,9 +1,11 @@
-import { Flex, Grid, View } from "@aws-amplify/ui-react"
-import { Outlet, Link, useLocation } from "react-router-dom"
+import { Grid, View } from "@aws-amplify/ui-react"
+import { Outlet } from "react-router-dom"
 import { SidebarItem } from "../components/Sidebar/SidebarItem"
 import Sidebar from "../components/Sidebar"
+import withAuth from "../hoc/withAuth"
+import { Auth } from "aws-amplify"
 
-const CustomerLayout = () => {
+let CustomerLayout: React.FC = () => {
   return (
     <Grid templateColumns="250px 1fr">
       <View>
@@ -12,6 +14,9 @@ const CustomerLayout = () => {
           <SidebarItem href="appointments">Appointments</SidebarItem>
           <SidebarItem href="chat">Chat</SidebarItem>
           <SidebarItem href="profile">Profile</SidebarItem>
+          <SidebarItem onClick={async () => await Auth.signOut()}>
+            Logout
+          </SidebarItem>
         </Sidebar>
       </View>
 
@@ -21,5 +26,7 @@ const CustomerLayout = () => {
     </Grid>
   )
 }
+
+CustomerLayout = withAuth(CustomerLayout, "Customer")
 
 export default CustomerLayout

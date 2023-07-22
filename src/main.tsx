@@ -12,11 +12,13 @@ import { routes } from "./routes/index.tsx"
 import { customerRoutes } from "./routes/CustomerRoutes.tsx"
 import { mechanicRoutes } from "./routes/mechanicRoutes.tsx"
 import { AuthContextProvider } from "./context/AuthContext.tsx"
+import { authRoutes } from "./routes/authRoutes.tsx"
 
 Amplify.configure(awsmobile)
 
 const router = createBrowserRouter([
   ...routes,
+  ...authRoutes,
   ...customerRoutes,
   ...mechanicRoutes
 ])

@@ -50,7 +50,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <AuthLayout>
+    <>
       <Heading level={2}>Welcome to RepairRadar</Heading>
       <Text margin="20px 0 40px 0">Find Trusted Mechanics Near You.</Text>
       <SignUp
@@ -91,7 +91,7 @@ const SignUpPage = () => {
       <Text marginTop="20px">
         <Link to="/login">Already have an account? Login</Link>
       </Text>
-    </AuthLayout>
+    </>
   )
 }
 

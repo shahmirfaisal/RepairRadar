@@ -5,27 +5,26 @@ import MechanicProfilePage from "../pages/customer/MechanicProfilePage"
 
 export const customerRoutes = [
   {
-    path: "/customer",
     element: <CustomerLayout />,
     children: [
       {
-        path: "find-mechanics",
+        path: "/customer/find-mechanics",
         element: <FindMechanicsPage />
       },
       {
-        path: "appointments",
+        path: "/customer/appointments",
         element: <AppointmentsPage />
       },
       {
-        path: "chat",
+        path: "/customer/chat",
         element: <h1>Customer Chat</h1>
       },
       {
-        path: "profile",
+        path: "/customer/profile",
         element: <h1>Customer Profile</h1>
       },
       {
-        path: "mechanic-profile/:id",
+        path: "/customer/mechanic-profile/:id",
         element: <MechanicProfilePage />
       }
     ]

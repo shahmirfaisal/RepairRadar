@@ -3,12 +3,13 @@ import { Link, useLocation } from "react-router-dom"
 
 interface Props {
   children: string
-  href: string
+  href?: string
+  onClick?: () => Promise<void>
 }
 
-export const SidebarItem = ({ children, href }: Props) => {
+export const SidebarItem = ({ children, href, onClick }: Props) => {
   const location = useLocation()
-  const isActive = location.pathname === `/customer/${href}`
+  const isActive = location.pathname === `${href!}`
 
   return (
     <View
@@ -18,17 +19,33 @@ export const SidebarItem = ({ children, href }: Props) => {
       borderColor="black"
       borderStyle="solid"
     >
-      <Link
-        to={href}
-        style={{
-          textDecoration: "none",
-          color: "black",
-          display: "block",
-          padding: "10px"
-        }}
-      >
-        {children}
-      </Link>
+      {href ? (
+        <Link
+          to={href}
+          style={{
+            textDecoration: "none",
+            color: "black",
+            display: "block",
+            padding: "10px"
+          }}
+        >
+          {children}
+        </Link>
+      ) : (
+        <button
+          onClick={onClick}
+          style={{
+            display: "block",
+            padding: "10px",
+            backgroundColor: "transparent",
+            border: "none",
+            width: "100%",
+            cursor: "pointer"
+          }}
+        >
+          {children}
+        </button>
+      )}
     </View>
   )
 }

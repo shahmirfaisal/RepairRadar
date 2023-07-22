@@ -6,27 +6,26 @@ import MechanicProfilePage from "../pages/mechanic/MechanicProfilePage"
 
 export const mechanicRoutes = [
   {
-    path: "/mechanic",
     element: <MechanicLayout />,
     children: [
       {
-        path: "dashboard",
+        path: "/mechanic/dashboard",
         element: <DashboardPage />
       },
       {
-        path: "appointments",
+        path: "/mechanic/appointments",
         element: <AppointmentsPage />
       },
       {
-        path: "chat",
+        path: "/mechanic/chat",
         element: <ChatPage />
       },
       {
-        path: "profile",
+        path: "/mechanic/profile",
         element: <MechanicProfilePage />
       },
       {
-        path: "mechanic-profile/:id",
+        path: "/mechanic/mechanic-profile/:id",
         element: <MechanicProfilePage />
       }
     ]

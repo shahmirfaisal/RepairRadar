@@ -1,15 +1,13 @@
 import { Flex, Grid, Heading, View } from "@aws-amplify/ui-react"
+import { Outlet } from "react-router-dom"
+import withNoAuth from "../hoc/withNoAuth"
 
-interface Props {
-  children: React.ReactNode
-}
-
-const AuthLayout = ({ children }: Props) => {
+let AuthLayout: React.FC = () => {
   return (
     <Grid templateColumns="1fr 1fr" minHeight="100vh">
       <View marginTop="40px" marginBottom="40px" padding="0 15px">
         <View maxWidth="600px" margin="0 auto">
-          {children}
+          <Outlet />
         </View>
       </View>
 
@@ -26,5 +24,7 @@ const AuthLayout = ({ children }: Props) => {
     </Grid>
   )
 }
+
+AuthLayout = withNoAuth(AuthLayout)
 
 export default AuthLayout
