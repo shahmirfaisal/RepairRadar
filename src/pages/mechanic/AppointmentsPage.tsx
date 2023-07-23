@@ -77,6 +77,7 @@ const AppointmentsPage = () => {
           appointment.status === "REQUESTED" &&
           moment().isBefore(moment(appointment.time))
         }
+        type="Mechanic"
         title="Requested"
       />
 
@@ -86,6 +87,7 @@ const AppointmentsPage = () => {
         onReject={rejectAppointmentHandler}
         onComplete={completeAppointmentHandler}
         filter={(appointment) => appointment.status === "ACCEPTED"}
+        type="Mechanic"
         title="Accepted"
       />
 
@@ -95,6 +97,7 @@ const AppointmentsPage = () => {
         onReject={rejectAppointmentHandler}
         onComplete={completeAppointmentHandler}
         filter={(appointment) => appointment.status === "REJECTED"}
+        type="Mechanic"
         title="Rejected"
       />
 
@@ -104,6 +107,7 @@ const AppointmentsPage = () => {
         onReject={rejectAppointmentHandler}
         onComplete={completeAppointmentHandler}
         filter={(appointment) => appointment.status === "COMPLETED"}
+        type="Mechanic"
         title="Completed"
       />
 
@@ -116,6 +120,7 @@ const AppointmentsPage = () => {
           appointment.status === "REQUESTED" &&
           moment().isAfter(moment(appointment.time))
         }
+        type="Mechanic"
         title="Expired"
       />
     </div>

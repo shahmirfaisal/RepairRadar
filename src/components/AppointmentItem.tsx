@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
-import { LazyAppointment, LazyUser } from "../models"
+import { LazyAppointment, LazyReview, LazyUser, Review } from "../models"
 import { Appointment } from "../ui-components"
 import moment from "moment"
+import { DataStore } from "aws-amplify"
 
 interface ExtendedLazyAppointment extends LazyAppointment {
   mechanic?: LazyUser
   customer?: LazyUser
+  review?: LazyReview
 }
 
 const AppointmentItem = ({
@@ -13,12 +15,14 @@ const AppointmentItem = ({
   onAccept,
   onReject,
   onComplete,
+  onAddReview,
   type
 }: {
   appointment: LazyAppointment
   onAccept?: (appointment: LazyAppointment) => Promise<void>
   onReject?: (appointment: LazyAppointment) => Promise<void>
   onComplete?: (appointment: LazyAppointment) => Promise<void>
+  onAddReview?: (appointment: LazyAppointment) => void
   type: "Mechanic" | "Customer"
 }) => {
   const [showDescription, setShowDescription] = useState(false)
@@ -29,10 +33,16 @@ const AppointmentItem = ({
     ;(async () => {
       const mechanic = await appointment.Mechanic
       const customer = await appointment.Customer
+      const reviews = await DataStore.query(Review, (r) =>
+        r.reviewAppointmentId.eq(appointment.id)
+      )
+      const review = reviews[0]
+      console.log("review", review)
       setAppointment((appointment) => ({
         ...appointment,
         mechanic,
-        customer
+        customer,
+        review
       }))
     })()
   }, [initialAppointment])
@@ -50,6 +60,7 @@ const AppointmentItem = ({
       onAccept={() => onAccept?.(initialAppointment)}
       onReject={() => onReject?.(initialAppointment)}
       onComplete={() => onComplete?.(initialAppointment)}
+      onAddReview={() => onAddReview?.(initialAppointment)}
       overrides={{
         Appointment: {
           width: "100%"
@@ -75,6 +86,14 @@ const AppointmentItem = ({
             appointment.status === "ACCEPTED" &&
             moment().isAfter(moment(appointment.time)) &&
             type === "Mechanic"
+              ? "flex"
+              : "none"
+        },
+        "Frame 441": {
+          display:
+            appointment.status === "COMPLETED" &&
+            type === "Customer" &&
+            !appointment.review
               ? "flex"
               : "none"
         }

@@ -7,15 +7,19 @@ const AppointmentsSection = ({
   onAccept,
   onReject,
   onComplete,
+  onAddReview,
   filter,
-  title
+  title,
+  type
 }: {
   appointments: LazyAppointment[]
   onAccept?: (appointment: LazyAppointment) => Promise<void>
   onReject?: (appointment: LazyAppointment) => Promise<void>
   onComplete?: (appointment: LazyAppointment) => Promise<void>
+  onAddReview?: (appointment: LazyAppointment) => void
   filter: (appointment: LazyAppointment) => boolean
   title: string
+  type: "Mechanic" | "Customer"
 }) => {
   return (
     <View marginTop="50px">
@@ -30,6 +34,8 @@ const AppointmentsSection = ({
             onAccept={onAccept}
             onReject={onReject}
             onComplete={onComplete}
+            onAddReview={onAddReview}
+            type={type}
           />
         ))}
       </View>

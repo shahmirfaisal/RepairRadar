@@ -46,6 +46,20 @@ export const schema = {
                         ]
                     }
                 },
+                "rating": {
+                    "name": "rating",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "text": {
+                    "name": "text",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "Appointment": {
                     "name": "Appointment",
                     "isArray": false,
@@ -63,20 +77,6 @@ export const schema = {
                             "reviewAppointmentId"
                         ]
                     }
-                },
-                "rating": {
-                    "name": "rating",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "text": {
-                    "name": "text",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",

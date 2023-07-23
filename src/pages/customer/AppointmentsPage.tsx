@@ -9,6 +9,7 @@ import { useAuth } from "../../context/AuthContext"
 import { Heading } from "@aws-amplify/ui-react"
 import moment from "moment"
 import AppointmentsSection from "../../components/AppointmentsSection"
+import AddReviewModal from "../../components/AddReviewModal"
 
 interface ExtendedLazyAppointment extends LazyAppointment {
   mechanic?: LazyUser
@@ -19,28 +20,23 @@ interface ExtendedLazyAppointment extends LazyAppointment {
 
 const AppointmentsPage = () => {
   const { user } = useAuth()
-  const [appointments, setAppointments] = useState<ExtendedLazyAppointment[]>(
-    []
-  )
+  const [appointments, setAppointments] = useState<LazyAppointment[]>([])
+
+  const [showModal, setShowModal] = useState(false)
+  const [appointment, setAppointment] = useState<LazyAppointment | null>(null)
 
   const getAppointments = async () => {
-    let appointments = (await DataStore.query(AppointmentModel, (c) =>
+    const appointments = await DataStore.query(AppointmentModel, (c) =>
       c.Customer.userId.eq(user!.id)
-    )) as unknown as ExtendedLazyAppointment[]
-
-    appointments = await Promise.all(
-      appointments.map(async (appointment) => {
-        const mechanic = await appointment.Mechanic
-        const customer = await appointment.Customer
-        return {
-          ...appointment,
-          mechanic,
-          customer
-        }
-      })
     )
+    console.log(appointments)
 
     setAppointments(appointments)
+  }
+
+  const openModal = (appointment: LazyAppointment) => {
+    setAppointment(appointment)
+    setShowModal(true)
   }
 
   useEffect(() => {
@@ -57,25 +53,30 @@ const AppointmentsPage = () => {
           appointment.status === "REQUESTED" &&
           moment().isBefore(moment(appointment.time))
         }
+        type="Customer"
         title="Requested"
       />
 
       <AppointmentsSection
         appointments={appointments}
         filter={(appointment) => appointment.status === "ACCEPTED"}
+        type="Customer"
         title="Accepted"
       />
 
       <AppointmentsSection
         appointments={appointments}
         filter={(appointment) => appointment.status === "REJECTED"}
+        type="Customer"
         title="Rejected"
       />
 
       <AppointmentsSection
         appointments={appointments}
         filter={(appointment) => appointment.status === "COMPLETED"}
+        type="Customer"
         title="Completed"
+        onAddReview={openModal}
       />
 
       <AppointmentsSection
@@ -84,8 +85,16 @@ const AppointmentsPage = () => {
           appointment.status === "REQUESTED" &&
           moment().isAfter(moment(appointment.time))
         }
+        type="Customer"
         title="Expired"
       />
+
+      {showModal && appointment && (
+        <AddReviewModal
+          onClose={() => setShowModal(false)}
+          appointment={appointment}
+        />
+      )}
     </div>
   )
 }

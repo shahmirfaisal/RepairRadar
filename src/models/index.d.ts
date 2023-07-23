@@ -14,9 +14,9 @@ type EagerReview = {
   readonly id: string;
   readonly Customer?: User | null;
   readonly Mechanic?: User | null;
-  readonly Appointment?: Appointment | null;
   readonly rating: number;
   readonly text: string;
+  readonly Appointment?: Appointment | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly reviewCustomerId?: string | null;
@@ -32,9 +32,9 @@ type LazyReview = {
   readonly id: string;
   readonly Customer: AsyncItem<User | undefined>;
   readonly Mechanic: AsyncItem<User | undefined>;
-  readonly Appointment: AsyncItem<Appointment | undefined>;
   readonly rating: number;
   readonly text: string;
+  readonly Appointment: AsyncItem<Appointment | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly reviewCustomerId?: string | null;
