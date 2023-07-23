@@ -8,6 +8,7 @@
 import * as React from "react";
 import { User } from "../models";
 import {
+  createDataStorePredicate,
   getOverrideProps,
   useDataStoreBinding,
 } from "@aws-amplify/ui-react/internal";
@@ -15,10 +16,13 @@ import MechanicItem from "./MechanicItem";
 import { Collection } from "@aws-amplify/ui-react";
 export default function MechanicItemCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const itemsFilterObj = { field: "type", operator: "eq", operand: "Mechanic" };
+  const itemsFilter = createDataStorePredicate(itemsFilterObj);
   const [items, setItems] = React.useState(undefined);
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: User,
+    criteria: itemsFilter,
   }).items;
   React.useEffect(() => {
     if (itemsProp !== undefined) {
@@ -31,10 +35,10 @@ export default function MechanicItemCollection(props) {
     <Collection
       type="grid"
       searchPlaceholder="Search..."
-      templateColumns="1fr 1fr"
+      templateColumns="1fr 1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
-      justifyContent="left"
+      justifyContent="stretch"
       items={items || []}
       {...getOverrideProps(overrides, "MechanicItemCollection")}
       {...rest}

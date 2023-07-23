@@ -64,7 +64,7 @@ const LogInPage = () => {
       />
 
       <Text marginTop="20px">
-        <Link to="/signup">Don't have an account? SignUp</Link>
+        <Link to="/auth/signup">Don't have an account? SignUp</Link>
       </Text>
     </>
   )

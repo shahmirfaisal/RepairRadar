@@ -6,6 +6,48 @@ import { LazyLoading, LazyLoadingDisabled, AsyncItem } from "@aws-amplify/datast
 
 
 
+type EagerReview = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Review, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Customer?: User | null;
+  readonly Mechanic?: User | null;
+  readonly Appointment?: Appointment | null;
+  readonly rating: number;
+  readonly text: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly reviewCustomerId?: string | null;
+  readonly reviewMechanicId?: string | null;
+  readonly reviewAppointmentId?: string | null;
+}
+
+type LazyReview = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Review, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Customer: AsyncItem<User | undefined>;
+  readonly Mechanic: AsyncItem<User | undefined>;
+  readonly Appointment: AsyncItem<Appointment | undefined>;
+  readonly rating: number;
+  readonly text: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly reviewCustomerId?: string | null;
+  readonly reviewMechanicId?: string | null;
+  readonly reviewAppointmentId?: string | null;
+}
+
+export declare type Review = LazyLoading extends LazyLoadingDisabled ? EagerReview : LazyReview
+
+export declare const Review: (new (init: ModelInit<Review>) => Review) & {
+  copyOf(source: Review, mutator: (draft: MutableModel<Review>) => MutableModel<Review> | void): Review;
+}
+
 type EagerAppointment = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Appointment, 'id'>;

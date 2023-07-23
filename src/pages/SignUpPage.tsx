@@ -27,7 +27,7 @@ const SignUpPage = () => {
         attributes: {
           name,
           email,
-          "custom:type": "Mechanic"
+          "custom:type": type
         }
         // autoSignIn: {
         //   enabled: true
@@ -43,7 +43,7 @@ const SignUpPage = () => {
       )
       console.log(user)
       toast.success("Signed up successfully!")
-      navigate(`/email-verification?email=${encodeURIComponent(email)}`)
+      navigate(`/auth/email-verification?email=${encodeURIComponent(email)}`)
     } catch (error) {
       toast.error(error.message)
     }
@@ -89,7 +89,7 @@ const SignUpPage = () => {
       />
 
       <Text marginTop="20px">
-        <Link to="/login">Already have an account? Login</Link>
+        <Link to="/auth/login">Already have an account? Login</Link>
       </Text>
     </>
   )

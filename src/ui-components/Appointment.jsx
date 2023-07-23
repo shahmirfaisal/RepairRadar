@@ -19,6 +19,7 @@ export default function Appointment(props) {
     onAccept,
     onReject,
     onComplete,
+    onAddReview,
     overrides,
     ...rest
   } = props;
@@ -218,6 +219,31 @@ export default function Appointment(props) {
           children="Mark it as Completed"
           onClick={onComplete}
           {...getOverrideProps(overrides, "Button3957550")}
+        ></Button>
+      </Flex>
+      <Flex
+        gap="16px"
+        direction="row"
+        width="unset"
+        height="unset"
+        justifyContent="flex-start"
+        alignItems="center"
+        shrink="0"
+        alignSelf="stretch"
+        position="relative"
+        padding="0px 0px 0px 0px"
+        {...getOverrideProps(overrides, "Frame 441")}
+      >
+        <Button
+          width="unset"
+          height="33px"
+          shrink="0"
+          size="small"
+          isDisabled={false}
+          variation="primary"
+          children="Provide Review"
+          onClick={onAddReview}
+          {...getOverrideProps(overrides, "Button39612848")}
         ></Button>
       </Flex>
     </Flex>

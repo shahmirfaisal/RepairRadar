@@ -10,10 +10,12 @@ let CustomerLayout: React.FC = () => {
     <Grid templateColumns="250px 1fr">
       <View>
         <Sidebar>
-          <SidebarItem href="find-mechanics">Find Mechanics</SidebarItem>
-          <SidebarItem href="appointments">Appointments</SidebarItem>
-          <SidebarItem href="chat">Chat</SidebarItem>
-          <SidebarItem href="profile">Profile</SidebarItem>
+          <SidebarItem href="/customer/find-mechanics">
+            Find Mechanics
+          </SidebarItem>
+          <SidebarItem href="/customer/appointments">Appointments</SidebarItem>
+          <SidebarItem href="/customer/chat">Chat</SidebarItem>
+          <SidebarItem href="/customer/profile">Profile</SidebarItem>
           <SidebarItem onClick={async () => await Auth.signOut()}>
             Logout
           </SidebarItem>

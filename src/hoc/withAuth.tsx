@@ -8,6 +8,7 @@ const withAuth = (Component: React.FC, type: "Mechanic" | "Customer") => {
     const navigate = useNavigate()
 
     useEffect(() => {
+      console.log(user)
       if (!user || (user && user.type !== type)) navigate("/auth/login")
     }, [user])
 

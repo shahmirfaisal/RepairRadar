@@ -1,3 +1,12 @@
+type Review @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Customer: User @hasOne
+  Mechanic: User @hasOne
+  Appointment: Appointment @hasOne
+  rating: Float!
+  text: String!
+}
+
 type Appointment @model @auth(rules: [{allow: public}]) {
   id: ID!
   Customer: User @hasOne

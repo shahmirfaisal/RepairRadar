@@ -30,11 +30,11 @@ const EmailVerificationPage = () => {
       const message = await Auth.confirmSignUp(email, code)
 
       toast.success("Email verified! Please log in.")
-      navigate(`/login?email=${encodeURIComponent(email!)}`)
+      navigate(`/auth/login?email=${encodeURIComponent(email!)}`)
     } catch (error) {
       if (error.message.includes("CONFIRMED")) {
         toast.error("Email already verified. Please log in!")
-        return navigate(`/login?email=${encodeURIComponent(email!)}`)
+        return navigate(`/auth/login?email=${encodeURIComponent(email!)}`)
       }
 
       toast.error(error.message)

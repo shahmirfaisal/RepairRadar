@@ -6,49 +6,15 @@ import {
   LazyUser
 } from "../../models"
 import { useAuth } from "../../context/AuthContext"
-import { Appointment } from "../../ui-components"
-import { Heading, View } from "@aws-amplify/ui-react"
+import { Heading } from "@aws-amplify/ui-react"
 import moment from "moment"
+import AppointmentsSection from "../../components/AppointmentsSection"
 
 interface ExtendedLazyAppointment extends LazyAppointment {
   mechanic?: LazyUser
   customer?: LazyUser
   Mechanic: Promise<LazyUser>
   Customer: Promise<LazyUser>
-}
-
-const AppointmentItem = ({
-  appointment
-}: {
-  appointment: ExtendedLazyAppointment
-}) => {
-  const [showDescription, setShowDescription] = useState(false)
-
-  return (
-    <Appointment
-      name={appointment.mechanic?.name}
-      image={appointment.mechanic?.picture}
-      time={moment(appointment.time).format("MMMM Do YYYY, h:mm a")}
-      descriptionLabel={
-        showDescription ? "Hide description" : "View description"
-      }
-      description={appointment.description}
-      onToggleDescription={() => setShowDescription(!showDescription)}
-      overrides={{
-        Appointment: {
-          width: "100%"
-        },
-        "Here is the descripiton and that is it": {
-          display: showDescription ? "block" : "none"
-        },
-        "View description": {
-          style: {
-            cursor: "pointer"
-          }
-        }
-      }}
-    />
-  )
 }
 
 const AppointmentsPage = () => {
@@ -85,27 +51,41 @@ const AppointmentsPage = () => {
     <div>
       <Heading level={1}>Appointments</Heading>
 
-      <View marginTop="50px">
-        <Heading level={3}>Requested</Heading>
-        <View marginTop="10px">
-          {appointments
-            .filter((appointment) => appointment.status === "REQUESTED")
-            .map((appointment) => (
-              <AppointmentItem appointment={appointment} />
-            ))}
-        </View>
-      </View>
+      <AppointmentsSection
+        appointments={appointments}
+        filter={(appointment) =>
+          appointment.status === "REQUESTED" &&
+          moment().isBefore(moment(appointment.time))
+        }
+        title="Requested"
+      />
 
-      <View marginTop="50px">
-        <Heading level={3}>Accepted</Heading>
-        <View marginTop="10px">
-          {appointments
-            .filter((appointment) => appointment.status === "ACCEPTED")
-            .map((appointment) => (
-              <AppointmentItem appointment={appointment} />
-            ))}
-        </View>
-      </View>
+      <AppointmentsSection
+        appointments={appointments}
+        filter={(appointment) => appointment.status === "ACCEPTED"}
+        title="Accepted"
+      />
+
+      <AppointmentsSection
+        appointments={appointments}
+        filter={(appointment) => appointment.status === "REJECTED"}
+        title="Rejected"
+      />
+
+      <AppointmentsSection
+        appointments={appointments}
+        filter={(appointment) => appointment.status === "COMPLETED"}
+        title="Completed"
+      />
+
+      <AppointmentsSection
+        appointments={appointments}
+        filter={(appointment) =>
+          appointment.status === "REQUESTED" &&
+          moment().isAfter(moment(appointment.time))
+        }
+        title="Expired"
+      />
     </div>
   )
 }
