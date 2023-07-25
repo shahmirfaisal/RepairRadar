@@ -1,13 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 
-interface MarkerType {
-  position: {
-    lat: number
-    lng: number
-  }
-  label: string
-}
-
 interface Props {
   center: [number, number]
   markers: MarkerType[]

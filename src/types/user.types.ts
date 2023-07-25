@@ -27,4 +27,5 @@ interface AuthContextType {
   authUser: any
   setPicture: (picture: string) => void
   setLocation: (location: LocationType) => void
+  setName: (name: string) => void
 }

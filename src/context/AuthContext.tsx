@@ -6,7 +6,8 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   authUser: null,
   setPicture: () => undefined,
-  setLocation: () => undefined
+  setLocation: () => undefined,
+  setName: () => undefined
 })
 
 export const useAuth = () => useContext(AuthContext)
@@ -59,6 +60,11 @@ export const AuthContextProvider = ({ children }: Props) => {
     // can also set the authUser
   }
 
+  const setName = (name: string) => {
+    setUser((prev) => ({ ...prev, name }))
+    // can also set the authUser
+  }
+
   if (loadingCurrentUser) return <div>Loading...</div>
 
   return (
@@ -67,7 +73,8 @@ export const AuthContextProvider = ({ children }: Props) => {
         user,
         authUser,
         setPicture,
-        setLocation
+        setLocation,
+        setName
       }}
     >
       {children}

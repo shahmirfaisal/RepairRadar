@@ -1,17 +1,11 @@
 import { Button, Flex, Heading, Image, View } from "@aws-amplify/ui-react"
-import { useEffect, useState } from "react"
-import { User } from "../../models"
-import { useParams } from "react-router-dom"
-import { DataStore } from "aws-amplify"
-import { toast } from "react-hot-toast"
-import { MapContainer, Marker, TileLayer } from "react-leaflet"
-import AppointmentRequest from "../../ui-components/AppointmentRequest"
-import AppointmentRequestModal from "../../components/AppointmentRequestModal"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
 import Map from "../../components/Map"
 
 const MechanicProfilePage = () => {
   const { user } = useAuth()
+  const navigate = useNavigate()
 
   return (
     <View marginBottom="100px">
@@ -57,7 +51,11 @@ const MechanicProfilePage = () => {
           />
 
           <Flex marginTop="50px">
-            <Button variation="primary" size="large" onClick={() => {}}>
+            <Button
+              variation="primary"
+              size="large"
+              onClick={() => navigate("/mechanic/profile/edit")}
+            >
               Edit Profile
             </Button>
           </Flex>

@@ -13,6 +13,7 @@ import { customerRoutes } from "./routes/CustomerRoutes.tsx"
 import { mechanicRoutes } from "./routes/mechanicRoutes.tsx"
 import { AuthContextProvider } from "./context/AuthContext.tsx"
 import { authRoutes } from "./routes/authRoutes.tsx"
+import { Toaster } from "react-hot-toast"
 
 Amplify.configure(awsmobile)
 
@@ -28,5 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <AuthContextProvider>
       <RouterProvider router={router} />
     </AuthContextProvider>
+
+    <Toaster />
   </AmplifyProvider>
 )

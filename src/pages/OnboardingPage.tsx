@@ -1,13 +1,11 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useAuth } from "../context/AuthContext"
 import Onboarding1 from "../ui-components/Onboarding1"
 import { Stepper } from "react-form-stepper"
 import { View } from "@aws-amplify/ui-react"
 import Onboarding2 from "../ui-components/Onboarding2"
-import { Auth, DataStore, Storage } from "aws-amplify"
-import { toast } from "react-hot-toast"
-import { User } from "../models"
 import Onboarding3 from "../components/Onboarding3"
+import { useImagePicker } from "../hooks/useImagePicker"
 
 const steps = [
   { label: "Setup Profile" },
@@ -16,82 +14,10 @@ const steps = [
 ]
 
 const OnboardingPage = () => {
-  const { user, authUser, setPicture, setLocation } = useAuth()
+  const { user } = useAuth()
   const [activeStep, setActiveStep] = useState(0)
-  const [image, setImage] = useState("/blank-profile-picture.webp")
-  const [imageFile, setImageFile] = useState<File | null>(null)
-
-  useEffect(() => {
-    if (user!.picture) setImage(user!.picture)
-  }, [user])
-
-  const pickImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return
-
-    const file = e.target.files[0]
-    const fileReader = new FileReader()
-
-    fileReader.onload = () => {
-      setImage(fileReader.result as string)
-      setImageFile(file)
-    }
-
-    fileReader.readAsDataURL(file)
-  }
-
-  const uploadImageHandler = useCallback(async () => {
-    try {
-      const { key } = await Storage.put(
-        `${user!.id}.${imageFile?.type?.split("/")?.[1]}`,
-        imageFile!
-      )
-
-      // const url = await Storage.get(
-      //   `${user!.id}.${imageFile?.type?.split("/")?.[1]}`
-      // )
-      const url = `https://repairradar-storage-25cc0337152716-staging.s3.eu-north-1.amazonaws.com/public/${key}`
-      const originalUser = await DataStore.query(User, (u) =>
-        u.userId.eq(user!.id)
-      )
-      await DataStore.save(
-        User.copyOf(originalUser[0], (updated) => {
-          updated.picture = url
-        })
-      )
-      await Auth.updateUserAttributes(authUser, {
-        picture: url
-      })
-      setPicture(url)
-      setActiveStep((prev) => prev + 1)
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }, [authUser, imageFile, user, setPicture])
-
-  const saveLocationHandler = useCallback(
-    async (location: LocationType | null) => {
-      try {
-        if (!location) throw new Error("Please pick a location")
-
-        const originalUser = await DataStore.query(User, (u) =>
-          u.userId.eq(user!.id)
-        )
-        await DataStore.save(
-          User.copyOf(originalUser[0], (updated) => {
-            updated.latitude = location.latitude.toString()
-            updated.longitude = location.longitude.toString()
-          })
-        )
-        await Auth.updateUserAttributes(authUser, {
-          "custom:latitude": location.latitude.toString(),
-          "custom:longitude": location.longitude.toString()
-        })
-        setLocation(location)
-      } catch (error) {
-        toast.error(error.message)
-      }
-    },
-    [authUser, user, setLocation]
+  const { image, pickImage, uploadImage } = useImagePicker(
+    "/blank-profile-picture.webp"
   )
 
   const renderStep = useCallback(() => {
@@ -122,15 +48,17 @@ const OnboardingPage = () => {
               }
             },
             Button: {
-              onClick: uploadImageHandler
+              onClick: async () => {
+                await uploadImage()
+                setActiveStep((prev) => prev + 1)
+              }
             }
           }}
         />
       )
 
-    if (activeStep === 2)
-      return <Onboarding3 saveLocationHandler={saveLocationHandler} />
-  }, [image, activeStep, user, uploadImageHandler, saveLocationHandler])
+    if (activeStep === 2) return <Onboarding3 />
+  }, [image, activeStep, user, uploadImage])
 
   return (
     <View marginTop="100px" marginBottom="100px">
@@ -147,7 +75,7 @@ const OnboardingPage = () => {
         type="file"
         id="imageInput"
         hidden
-        onChange={pickImageHandler}
+        onChange={pickImage}
         accept="image/*"
       />
     </View>

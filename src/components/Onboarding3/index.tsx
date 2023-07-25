@@ -1,29 +1,15 @@
 import { Button, Flex, Heading, Text, View } from "@aws-amplify/ui-react"
 import { useState } from "react"
 import LocationPickerMap from "../LocationPickerMap"
+import { usePickLocation } from "../../hooks/usePickLocation"
 
-interface Props {
-  saveLocationHandler: (location: LocationType | null) => Promise<void>
-}
-
-const Onboarding3 = ({ saveLocationHandler }: Props) => {
-  const [pickedLocation, setPickedLocation] = useState<LocationType | null>(
-    null
-  )
-
-  const pickCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setPickedLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        })
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }
+const Onboarding3 = () => {
+  const {
+    pickedLocation,
+    setPickedLocation,
+    pickCurrentLocation,
+    saveLocation
+  } = usePickLocation(null)
 
   return (
     <Flex direction="column" alignItems="center" gap="30px" marginTop="40px">
@@ -51,11 +37,7 @@ const Onboarding3 = ({ saveLocationHandler }: Props) => {
         />
       </View>
 
-      <Button
-        variation="primary"
-        size="large"
-        onClick={() => saveLocationHandler(pickedLocation)}
-      >
+      <Button variation="primary" size="large" onClick={() => saveLocation()}>
         Save Shop Location
       </Button>
     </Flex>
