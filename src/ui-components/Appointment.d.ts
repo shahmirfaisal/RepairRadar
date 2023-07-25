@@ -25,6 +25,8 @@ export declare type AppointmentOverridesProps = {
     Button3957550?: PrimitiveOverrideProps<ButtonProps>;
     "Frame 441"?: PrimitiveOverrideProps<FlexProps>;
     Button39612848?: PrimitiveOverrideProps<ButtonProps>;
+    "Frame 442"?: PrimitiveOverrideProps<FlexProps>;
+    Button3964564?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type AppointmentProps = React.PropsWithChildren<Partial<FlexProps> & {
     name?: String;
@@ -37,6 +39,7 @@ export declare type AppointmentProps = React.PropsWithChildren<Partial<FlexProps
     onReject?: (event: SyntheticEvent) => void;
     onComplete?: (event: SyntheticEvent) => void;
     onAddReview?: (event: SyntheticEvent) => void;
+    onViewReview?: (event: SyntheticEvent) => void;
 } & {
     overrides?: AppointmentOverridesProps | undefined | null;
 }>;

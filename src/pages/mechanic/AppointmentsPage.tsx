@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react"
 import { DataStore } from "aws-amplify"
-import { Appointment as AppointmentModel, LazyAppointment } from "../../models"
+import {
+  Appointment as AppointmentModel,
+  LazyAppointment,
+  LazyReview
+} from "../../models"
 import { useAuth } from "../../context/AuthContext"
 import { Heading } from "@aws-amplify/ui-react"
 import moment from "moment"
 import AppointmentsSection from "../../components/AppointmentsSection"
+import ReviewViewModal from "../../components/ReviewViewModal"
 
 const AppointmentsPage = () => {
   const { user } = useAuth()
   const [appointments, setAppointments] = useState<LazyAppointment[]>([])
+  const [showReviewViewModal, setShowReviewViewModal] = useState(false)
+  const [review, setReview] = useState<LazyReview | null>(null)
 
   const getAppointments = async () => {
     const appointments = await DataStore.query(AppointmentModel, (c) =>
@@ -60,6 +67,11 @@ const AppointmentsPage = () => {
     )
   }
 
+  const openReviewViewModal = (review: LazyReview) => {
+    setReview(review)
+    setShowReviewViewModal(true)
+  }
+
   useEffect(() => {
     getAppointments()
   }, [])
@@ -106,6 +118,7 @@ const AppointmentsPage = () => {
         onAccept={acceptAppointmentHandler}
         onReject={rejectAppointmentHandler}
         onComplete={completeAppointmentHandler}
+        onViewReview={openReviewViewModal}
         filter={(appointment) => appointment.status === "COMPLETED"}
         type="Mechanic"
         title="Completed"
@@ -123,6 +136,13 @@ const AppointmentsPage = () => {
         type="Mechanic"
         title="Expired"
       />
+
+      {showReviewViewModal && review && (
+        <ReviewViewModal
+          onClose={() => setShowReviewViewModal(false)}
+          review={review}
+        />
+      )}
     </div>
   )
 }

@@ -20,6 +20,7 @@ export default function Appointment(props) {
     onReject,
     onComplete,
     onAddReview,
+    onViewReview,
     overrides,
     ...rest
   } = props;
@@ -244,6 +245,31 @@ export default function Appointment(props) {
           children="Provide Review"
           onClick={onAddReview}
           {...getOverrideProps(overrides, "Button39612848")}
+        ></Button>
+      </Flex>
+      <Flex
+        gap="16px"
+        direction="row"
+        width="unset"
+        height="unset"
+        justifyContent="flex-start"
+        alignItems="center"
+        shrink="0"
+        alignSelf="stretch"
+        position="relative"
+        padding="0px 0px 0px 0px"
+        {...getOverrideProps(overrides, "Frame 442")}
+      >
+        <Button
+          width="unset"
+          height="33px"
+          shrink="0"
+          size="small"
+          isDisabled={false}
+          variation="primary"
+          children="View Review"
+          onClick={onViewReview}
+          {...getOverrideProps(overrides, "Button3964564")}
         ></Button>
       </Flex>
     </Flex>

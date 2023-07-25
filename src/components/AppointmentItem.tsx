@@ -16,6 +16,7 @@ const AppointmentItem = ({
   onReject,
   onComplete,
   onAddReview,
+  onViewReview,
   type
 }: {
   appointment: LazyAppointment
@@ -23,21 +24,21 @@ const AppointmentItem = ({
   onReject?: (appointment: LazyAppointment) => Promise<void>
   onComplete?: (appointment: LazyAppointment) => Promise<void>
   onAddReview?: (appointment: LazyAppointment) => void
+  onViewReview?: (review: LazyReview) => void
   type: "Mechanic" | "Customer"
 }) => {
   const [showDescription, setShowDescription] = useState(false)
   const [appointment, setAppointment] =
     useState<ExtendedLazyAppointment>(initialAppointment)
-  console.log("appointment", appointment)
+
   useEffect(() => {
-    ;(async () => {
+    void (async () => {
       const mechanic = await appointment.Mechanic
       const customer = await appointment.Customer
       const reviews = await DataStore.query(Review, (r) =>
         r.reviewAppointmentId.eq(appointment.id)
       )
       const review = reviews[0]
-      console.log("review", review)
       setAppointment((appointment) => ({
         ...appointment,
         mechanic,
@@ -49,8 +50,16 @@ const AppointmentItem = ({
 
   return (
     <Appointment
-      name={appointment.customer?.name}
-      image={appointment.customer?.picture}
+      name={
+        type === "Mechanic"
+          ? appointment.customer?.name
+          : appointment.mechanic?.name
+      }
+      image={
+        type === "Mechanic"
+          ? appointment.customer?.picture
+          : appointment.mechanic?.picture
+      }
       time={moment(appointment.time).format("MMMM Do YYYY, h:mm a")}
       descriptionLabel={
         showDescription ? "Hide description" : "View description"
@@ -61,6 +70,7 @@ const AppointmentItem = ({
       onReject={() => onReject?.(initialAppointment)}
       onComplete={() => onComplete?.(initialAppointment)}
       onAddReview={() => onAddReview?.(initialAppointment)}
+      onViewReview={() => onViewReview?.(appointment.review!)}
       overrides={{
         Appointment: {
           width: "100%"
@@ -96,6 +106,9 @@ const AppointmentItem = ({
             !appointment.review
               ? "flex"
               : "none"
+        },
+        "Frame 442": {
+          display: appointment.review ? "flex" : "none"
         }
       }}
     />

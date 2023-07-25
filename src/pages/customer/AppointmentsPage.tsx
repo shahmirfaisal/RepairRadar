@@ -3,6 +3,7 @@ import { DataStore } from "aws-amplify"
 import {
   Appointment as AppointmentModel,
   LazyAppointment,
+  LazyReview,
   LazyUser
 } from "../../models"
 import { useAuth } from "../../context/AuthContext"
@@ -10,6 +11,7 @@ import { Heading } from "@aws-amplify/ui-react"
 import moment from "moment"
 import AppointmentsSection from "../../components/AppointmentsSection"
 import AddReviewModal from "../../components/AddReviewModal"
+import ReviewViewModal from "../../components/ReviewViewModal"
 
 interface ExtendedLazyAppointment extends LazyAppointment {
   mechanic?: LazyUser
@@ -22,8 +24,10 @@ const AppointmentsPage = () => {
   const { user } = useAuth()
   const [appointments, setAppointments] = useState<LazyAppointment[]>([])
 
-  const [showModal, setShowModal] = useState(false)
+  const [showAddReviewModal, setShowAddReviewModal] = useState(false)
+  const [showReviewViewModal, setShowReviewViewModal] = useState(false)
   const [appointment, setAppointment] = useState<LazyAppointment | null>(null)
+  const [review, setReview] = useState<LazyReview | null>(null)
 
   const getAppointments = async () => {
     const appointments = await DataStore.query(AppointmentModel, (c) =>
@@ -34,9 +38,14 @@ const AppointmentsPage = () => {
     setAppointments(appointments)
   }
 
-  const openModal = (appointment: LazyAppointment) => {
+  const openAddReviewModal = (appointment: LazyAppointment) => {
     setAppointment(appointment)
-    setShowModal(true)
+    setShowAddReviewModal(true)
+  }
+
+  const openReviewViewModal = (review: LazyReview) => {
+    setReview(review)
+    setShowReviewViewModal(true)
   }
 
   useEffect(() => {
@@ -76,7 +85,8 @@ const AppointmentsPage = () => {
         filter={(appointment) => appointment.status === "COMPLETED"}
         type="Customer"
         title="Completed"
-        onAddReview={openModal}
+        onAddReview={openAddReviewModal}
+        onViewReview={openReviewViewModal}
       />
 
       <AppointmentsSection
@@ -89,10 +99,17 @@ const AppointmentsPage = () => {
         title="Expired"
       />
 
-      {showModal && appointment && (
+      {showAddReviewModal && appointment && (
         <AddReviewModal
-          onClose={() => setShowModal(false)}
+          onClose={() => setShowAddReviewModal(false)}
           appointment={appointment}
+        />
+      )}
+
+      {showReviewViewModal && review && (
+        <ReviewViewModal
+          onClose={() => setShowReviewViewModal(false)}
+          review={review}
         />
       )}
     </div>

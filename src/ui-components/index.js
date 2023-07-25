@@ -40,6 +40,7 @@ export { default as Onboarding1 } from "./Onboarding1";
 export { default as ItemCard } from "./ItemCard";
 export { default as HeroLayout2 } from "./HeroLayout2";
 export { default as LogIn } from "./LogIn";
+export { default as ReviewView } from "./ReviewView";
 export { default as StandardCard } from "./StandardCard";
 export { default as Appointment } from "./Appointment";
 export { default as MechanicItem } from "./MechanicItem";

@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast"
 import { MapContainer, Marker, TileLayer } from "react-leaflet"
 import AppointmentRequest from "../../ui-components/AppointmentRequest"
 import AppointmentRequestModal from "../../components/AppointmentRequestModal"
+import Map from "../../components/Map"
 
 const MechanicProfilePage = () => {
   const [mechanic, setMechanic] = useState<UserModel | null>(null)
@@ -56,22 +57,22 @@ const MechanicProfilePage = () => {
 
         <View
           border="3px solid #161617"
-          width={{ base: "100%", large: "800px" }}
+          width={{ base: "100%", large: "100%" }}
           marginTop="30px"
           height="500px"
         >
-          <MapContainer
+          <Map
+            markers={[
+              {
+                position: {
+                  lat: parseFloat(mechanic?.latitude!),
+                  lng: parseFloat(mechanic?.longitude!)
+                },
+                label: mechanic?.name
+              }
+            ]}
             center={[+mechanic?.latitude, +mechanic?.longitude]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <Marker position={[+mechanic?.latitude, +mechanic?.longitude]} />
-          </MapContainer>
+          />
 
           <Flex marginTop="50px">
             <Button size="large">Contact Mechanic</Button>

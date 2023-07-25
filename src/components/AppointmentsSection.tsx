@@ -1,5 +1,9 @@
-import { Appointment as AppointmentModel, LazyAppointment } from "../models"
-import { Heading, View } from "@aws-amplify/ui-react"
+import {
+  Appointment as AppointmentModel,
+  LazyAppointment,
+  LazyReview
+} from "../models"
+import { Heading, Text, View } from "@aws-amplify/ui-react"
 import AppointmentItem from "./AppointmentItem"
 
 const AppointmentsSection = ({
@@ -8,6 +12,7 @@ const AppointmentsSection = ({
   onReject,
   onComplete,
   onAddReview,
+  onViewReview,
   filter,
   title,
   type
@@ -17,6 +22,7 @@ const AppointmentsSection = ({
   onReject?: (appointment: LazyAppointment) => Promise<void>
   onComplete?: (appointment: LazyAppointment) => Promise<void>
   onAddReview?: (appointment: LazyAppointment) => void
+  onViewReview?: (review: LazyReview) => void
   filter: (appointment: LazyAppointment) => boolean
   title: string
   type: "Mechanic" | "Customer"
@@ -27,6 +33,7 @@ const AppointmentsSection = ({
         {title}
       </Heading>
       <View marginTop="10px">
+        {!appointments.filter(filter).length && <Text>No result!</Text>}
         {appointments.filter(filter).map((appointment) => (
           <AppointmentItem
             appointment={appointment}
@@ -35,6 +42,7 @@ const AppointmentsSection = ({
             onReject={onReject}
             onComplete={onComplete}
             onAddReview={onAddReview}
+            onViewReview={onViewReview}
             type={type}
           />
         ))}

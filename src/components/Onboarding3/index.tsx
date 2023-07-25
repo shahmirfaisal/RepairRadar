@@ -1,7 +1,6 @@
 import { Button, Flex, Heading, Text, View } from "@aws-amplify/ui-react"
 import { useState } from "react"
-import { MapContainer, TileLayer } from "react-leaflet"
-import { LocationMarker } from "./LocationMarker"
+import LocationPickerMap from "../LocationPickerMap"
 
 interface Props {
   saveLocationHandler: (location: LocationType | null) => Promise<void>
@@ -45,20 +44,11 @@ const Onboarding3 = ({ saveLocationHandler }: Props) => {
         width={{ base: "100%", large: "800px" }}
         height="500px"
       >
-        <MapContainer
+        <LocationPickerMap
           center={[51.505, -0.09]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LocationMarker
-            pickedLocation={pickedLocation}
-            setPickedLocation={setPickedLocation}
-          />
-        </MapContainer>
+          pickedLocation={pickedLocation}
+          setPickedLocation={setPickedLocation}
+        />
       </View>
 
       <Button
