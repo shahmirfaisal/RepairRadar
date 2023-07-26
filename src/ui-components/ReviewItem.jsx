@@ -7,82 +7,62 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Image, Rating, Text } from "@aws-amplify/ui-react";
-export default function ProfileCard(props) {
-  const { overrides, ...rest } = props;
+import { Flex, Image, Rating, Text } from "@aws-amplify/ui-react";
+export default function ReviewItem(props) {
+  const { image, name, rating, review, overrides, ...rest } = props;
   return (
     <Flex
-      gap="24px"
+      gap="16px"
       direction="column"
-      width="320px"
+      width="602px"
       height="unset"
       justifyContent="flex-start"
-      alignItems="center"
+      alignItems="flex-start"
       position="relative"
       boxShadow="0px 1px 4px rgba(0, 0, 0, 0.10000000149011612)"
-      padding="24px 24px 24px 24px"
+      padding="23px 24px 23px 24px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "ProfileCard")}
+      {...getOverrideProps(overrides, "ReviewItem")}
       {...rest}
     >
-      <Image
-        width="160px"
-        height="160px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        shrink="0"
-        position="relative"
-        borderRadius="160px"
-        padding="0px 0px 0px 0px"
-        objectFit="cover"
-        {...getOverrideProps(overrides, "image")}
-      ></Image>
       <Flex
-        gap="8px"
-        direction="column"
+        gap="16px"
+        direction="row"
         width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="center"
         shrink="0"
+        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Name")}
+        {...getOverrideProps(overrides, "Frame 445")}
       >
-        <Text
-          fontFamily="Inter"
-          fontSize="20px"
-          fontWeight="700"
-          color="rgba(13,26,38,1)"
-          lineHeight="25px"
-          textAlign="center"
+        <Image
+          width="65px"
+          height="65px"
           display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
           gap="unset"
           alignItems="unset"
+          justifyContent="unset"
           shrink="0"
           position="relative"
+          borderRadius="160px"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Melinda Marcus"
-          {...getOverrideProps(overrides, "Melinda Marcus")}
-        ></Text>
+          objectFit="cover"
+          src={image}
+          {...getOverrideProps(overrides, "image")}
+        ></Image>
         <Text
           fontFamily="Inter"
           fontSize="16px"
-          fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="center"
+          fontWeight="500"
+          color="rgba(0,0,0,1)"
+          lineHeight="19.363636016845703px"
+          textAlign="left"
           display="block"
           direction="column"
           justifyContent="unset"
-          letterSpacing="0.01px"
           width="unset"
           height="unset"
           gap="unset"
@@ -91,8 +71,8 @@ export default function ProfileCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Design Engineer at Cloth Studios"
-          {...getOverrideProps(overrides, "Design Engineer at Cloth Studios")}
+          children={name}
+          {...getOverrideProps(overrides, "Shahmir Faisal")}
         ></Text>
       </Flex>
       <Flex
@@ -112,6 +92,7 @@ export default function ProfileCard(props) {
           height="unset"
           shrink="0"
           size="default"
+          value={rating}
           {...getOverrideProps(overrides, "Rating")}
         ></Rating>
         <Text
@@ -132,21 +113,31 @@ export default function ProfileCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="4"
+          children={rating}
           {...getOverrideProps(overrides, "4")}
         ></Text>
       </Flex>
-      <Button
+      <Text
+        fontFamily="Inter"
+        fontSize="16px"
+        fontWeight="500"
+        color="rgba(0,0,0,1)"
+        lineHeight="19.363636016845703px"
+        textAlign="left"
+        display="block"
+        direction="column"
+        justifyContent="unset"
         width="unset"
         height="unset"
+        gap="unset"
+        alignItems="unset"
         shrink="0"
-        alignSelf="stretch"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="View Profile"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
+        position="relative"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children={review}
+        {...getOverrideProps(overrides, "This is my review")}
+      ></Text>
     </Flex>
   );
 }

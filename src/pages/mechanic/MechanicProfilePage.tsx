@@ -2,10 +2,31 @@ import { Button, Flex, Heading, Image, View } from "@aws-amplify/ui-react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
 import Map from "../../components/Map"
+import { LazyReview, Review as ReviewModel } from "../../models"
+import { useState, useEffect } from "react"
+import { toast } from "react-hot-toast"
+import { DataStore } from "aws-amplify"
+import Review from "../../components/Review"
 
 const MechanicProfilePage = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
+  const [reviews, setReviews] = useState<LazyReview[]>([])
+
+  const getReviews = async () => {
+    try {
+      const reviews = await DataStore.query(ReviewModel, (c) =>
+        c.Mechanic.userId.eq(user!.id)
+      )
+      setReviews(reviews)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
 
   return (
     <View marginBottom="100px">
@@ -15,6 +36,7 @@ const MechanicProfilePage = () => {
 
       <View marginTop="50px">
         <Image
+          alt={user?.name}
           src={user?.picture}
           width="150px"
           height="150px"
@@ -41,26 +63,36 @@ const MechanicProfilePage = () => {
             markers={[
               {
                 position: {
-                  lat: parseFloat(user?.latitude!),
-                  lng: parseFloat(user?.longitude!)
+                  lat: parseFloat(user!.latitude!),
+                  lng: parseFloat(user!.longitude!)
                 },
-                label: user?.name
+                label: user!.name
               }
             ]}
-            center={[+user?.latitude, +user?.longitude]}
+            center={[+user!.latitude!, +user!.longitude!]}
           />
-
-          <Flex marginTop="50px">
-            <Button
-              variation="primary"
-              size="large"
-              onClick={() => navigate("/mechanic/profile/edit")}
-            >
-              Edit Profile
-            </Button>
-          </Flex>
         </View>
       </View>
+
+      <Flex marginTop="50px">
+        <Button
+          variation="primary"
+          size="large"
+          onClick={() => navigate("/mechanic/profile/edit")}
+        >
+          Edit Profile
+        </Button>
+      </Flex>
+
+      <Heading level={2} marginTop="50px" marginBottom="20px">
+        Reviews from Customers
+      </Heading>
+
+      <Flex direction="column">
+        {reviews.map((review) => (
+          <Review review={review} />
+        ))}
+      </Flex>
     </View>
   )
 }

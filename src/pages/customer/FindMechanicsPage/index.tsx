@@ -1,4 +1,4 @@
-import { Heading, View } from "@aws-amplify/ui-react"
+import { Grid, Heading, View } from "@aws-amplify/ui-react"
 import MechanicsMap from "./MechanicsMap"
 import { User } from "../../../models"
 import { DataStore } from "aws-amplify"
@@ -7,6 +7,7 @@ import { MechanicItemCollection } from "../../../ui-components"
 import { useAuth } from "../../../context/AuthContext"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import MechanicItem from "../../../ui-components/MechanicItem"
 
 const FindMechanicsPage = () => {
   const [mechanics, setMechanics] = useState<UserModel[]>([])
@@ -34,16 +35,18 @@ const FindMechanicsPage = () => {
       </Heading>
       <MechanicsMap mechanics={mechanics} />
 
-      <View marginTop="50px">
-        <MechanicItemCollection
-          overrideItems={({ item, index }) => ({
-            width: "100%",
-            location: "Rawalpindi, Pakistan",
-            onViewProfileClick: () =>
-              navigate(`/customer/mechanic-profile/${item.userId}`)
-          })}
-        />
-      </View>
+      <Grid marginTop="50px">
+        {mechanics.map((mechanic) => (
+          <MechanicItem
+            image={mechanic.picture}
+            name={mechanic.name}
+            location="Rawalpindi, Pakistan"
+            onViewProfileClick={() =>
+              navigate(`/customer/mechanic-profile/${mechanic.userId}`)
+            }
+          />
+        ))}
+      </Grid>
     </View>
   )
 }

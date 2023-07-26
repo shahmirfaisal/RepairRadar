@@ -6,20 +6,24 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, ImageProps, RatingProps, TextProps } from "@aws-amplify/ui-react";
+import { FlexProps, ImageProps, RatingProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ProfileCardOverridesProps = {
+export declare type ReviewItemOverridesProps = {
     "4"?: PrimitiveOverrideProps<TextProps>;
-    ProfileCard?: PrimitiveOverrideProps<FlexProps>;
+    ReviewItem?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 445"?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
-    Name?: PrimitiveOverrideProps<FlexProps>;
-    "Melinda Marcus"?: PrimitiveOverrideProps<TextProps>;
-    "Design Engineer at Cloth Studios"?: PrimitiveOverrideProps<TextProps>;
+    "Shahmir Faisal"?: PrimitiveOverrideProps<TextProps>;
     "Frame 446"?: PrimitiveOverrideProps<FlexProps>;
     Rating?: PrimitiveOverrideProps<RatingProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+    "This is my review"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type ProfileCardProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: ProfileCardOverridesProps | undefined | null;
+export declare type ReviewItemProps = React.PropsWithChildren<Partial<FlexProps> & {
+    image?: String;
+    name?: String;
+    rating?: Number;
+    review?: String;
+} & {
+    overrides?: ReviewItemOverridesProps | undefined | null;
 }>;
-export default function ProfileCard(props: ProfileCardProps): React.ReactElement;
+export default function ReviewItem(props: ReviewItemProps): React.ReactElement;

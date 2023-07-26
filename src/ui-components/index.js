@@ -21,6 +21,7 @@ export { default as EditProfile } from "./EditProfile";
 export { default as LogoWithText } from "./LogoWithText";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as ReviewCard } from "./ReviewCard";
+export { default as ReviewItem } from "./ReviewItem";
 export { default as NavBarSide } from "./NavBarSide";
 export { default as MarketingPricing } from "./MarketingPricing";
 export { default as TallCard } from "./TallCard";

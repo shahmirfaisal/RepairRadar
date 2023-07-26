@@ -46,7 +46,7 @@ const AppointmentItem = ({
         review
       }))
     })()
-  }, [initialAppointment])
+  }, [])
 
   return (
     <Appointment
