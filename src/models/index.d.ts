@@ -6,6 +6,76 @@ import { LazyLoading, LazyLoadingDisabled, AsyncItem } from "@aws-amplify/datast
 
 
 
+type EagerMessage = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Message, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly text: string;
+  readonly Sender?: User | null;
+  readonly Chat?: Chat | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly messageSenderId?: string | null;
+  readonly messageChatId?: string | null;
+}
+
+type LazyMessage = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Message, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly text: string;
+  readonly Sender: AsyncItem<User | undefined>;
+  readonly Chat: AsyncItem<Chat | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly messageSenderId?: string | null;
+  readonly messageChatId?: string | null;
+}
+
+export declare type Message = LazyLoading extends LazyLoadingDisabled ? EagerMessage : LazyMessage
+
+export declare const Message: (new (init: ModelInit<Message>) => Message) & {
+  copyOf(source: Message, mutator: (draft: MutableModel<Message>) => MutableModel<Message> | void): Message;
+}
+
+type EagerChat = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Chat, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Customer?: User | null;
+  readonly Mechanic?: User | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly chatCustomerId?: string | null;
+  readonly chatMechanicId?: string | null;
+}
+
+type LazyChat = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Chat, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Customer: AsyncItem<User | undefined>;
+  readonly Mechanic: AsyncItem<User | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly chatCustomerId?: string | null;
+  readonly chatMechanicId?: string | null;
+}
+
+export declare type Chat = LazyLoading extends LazyLoadingDisabled ? EagerChat : LazyChat
+
+export declare const Chat: (new (init: ModelInit<Chat>) => Chat) & {
+  copyOf(source: Chat, mutator: (draft: MutableModel<Chat>) => MutableModel<Chat> | void): Chat;
+}
+
 type EagerReview = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Review, 'id'>;

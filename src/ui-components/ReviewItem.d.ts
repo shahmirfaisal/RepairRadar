@@ -14,6 +14,7 @@ export declare type ReviewItemOverridesProps = {
     "Frame 445"?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
     "Shahmir Faisal"?: PrimitiveOverrideProps<TextProps>;
+    "14th July"?: PrimitiveOverrideProps<TextProps>;
     "Frame 446"?: PrimitiveOverrideProps<FlexProps>;
     Rating?: PrimitiveOverrideProps<RatingProps>;
     "This is my review"?: PrimitiveOverrideProps<TextProps>;
@@ -23,6 +24,7 @@ export declare type ReviewItemProps = React.PropsWithChildren<Partial<FlexProps>
     name?: String;
     rating?: Number;
     review?: String;
+    date?: String;
 } & {
     overrides?: ReviewItemOverridesProps | undefined | null;
 }>;

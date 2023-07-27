@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { LazyReview, LazyUser } from "../models"
 import ReviewItem from "../ui-components/ReviewItem"
+import moment from "moment"
 
 interface Props {
   review: LazyReview
@@ -29,6 +30,8 @@ const Review = ({ review: initialReview }: Props) => {
 
   return (
     <ReviewItem
+      // formate the date like this July 12, 2023
+      date={moment(review.createdAt).format("MMMM DD, YYYY")}
       image={review.customer?.picture || "/blank-profile-picture.webp"}
       name={review.customer?.name}
       review={review.text}

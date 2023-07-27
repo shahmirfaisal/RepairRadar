@@ -1,11 +1,12 @@
 import { Grid, View } from "@aws-amplify/ui-react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { SidebarItem } from "../components/Sidebar/SidebarItem"
 import Sidebar from "../components/Sidebar"
 import withAuth from "../hoc/withAuth"
 import { Auth } from "aws-amplify"
 
 let CustomerLayout: React.FC = () => {
+  const { pathname } = useLocation()
   return (
     <Grid templateColumns="250px 1fr">
       <View>
@@ -22,7 +23,8 @@ let CustomerLayout: React.FC = () => {
         </Sidebar>
       </View>
 
-      <View padding="30px">
+      {/* padding="30px" */}
+      <View padding={pathname.includes("chat") ? "" : "30px"}>
         <Outlet />
       </View>
     </Grid>

@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Rating, Text } from "@aws-amplify/ui-react";
 export default function ReviewItem(props) {
-  const { image, name, rating, review, overrides, ...rest } = props;
+  const { image, name, rating, review, date, overrides, ...rest } = props;
   return (
     <Flex
       gap="16px"
@@ -73,6 +73,29 @@ export default function ReviewItem(props) {
           whiteSpace="pre-wrap"
           children={name}
           {...getOverrideProps(overrides, "Shahmir Faisal")}
+        ></Text>
+        <Text
+          fontFamily="Inter"
+          fontSize="13px"
+          fontWeight="500"
+          color="rgba(85,85,85,1)"
+          lineHeight="15.732954025268555px"
+          textAlign="right"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          grow="1"
+          shrink="1"
+          basis="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children={date}
+          {...getOverrideProps(overrides, "14th July")}
         ></Text>
       </Flex>
       <Flex

@@ -1,6 +1,20 @@
-import { Button, Flex, Heading, Image, View } from "@aws-amplify/ui-react"
-import { useEffect, useState } from "react"
-import { LazyReview, User, Review as ReviewModel } from "../../models"
+import {
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Rating,
+  Text,
+  View
+} from "@aws-amplify/ui-react"
+import { useEffect, useState, useMemo } from "react"
+import {
+  LazyReview,
+  User,
+  Review as ReviewModel,
+  Chat,
+  LazyUser
+} from "../../models"
 import { useParams } from "react-router-dom"
 import { DataStore } from "aws-amplify"
 import { toast } from "react-hot-toast"
@@ -9,14 +23,22 @@ import AppointmentRequest from "../../ui-components/AppointmentRequest"
 import AppointmentRequestModal from "../../components/AppointmentRequestModal"
 import Map from "../../components/Map"
 import Review from "../../components/Review"
+import { useAuth } from "../../context/AuthContext"
 
 const MechanicProfilePage = () => {
-  const [mechanic, setMechanic] = useState<UserModel | null>(null)
+  const [mechanic, setMechanic] = useState<LazyUser | null>(null)
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
   const [showModal, setShowModal] = useState(false)
+  const { user } = useAuth()
 
   const [reviews, setReviews] = useState<LazyReview[]>([])
+
+  const rating = useMemo(() => {
+    return (
+      reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    )
+  }, [reviews])
 
   const getReviews = async () => {
     try {
@@ -33,7 +55,7 @@ const MechanicProfilePage = () => {
     try {
       const mechanic = await DataStore.query(User, (u) => u.userId.eq(id!))
 
-      setMechanic(mechanic[0] as UserModel)
+      setMechanic(mechanic[0])
     } catch (error) {
       toast.error(error.message)
     }
@@ -45,6 +67,37 @@ const MechanicProfilePage = () => {
     getMechanic()
     getReviews()
   }, [])
+
+  const contactMechanicHandler = async () => {
+    try {
+      const customer = (
+        await DataStore.query(User, (u) => u.userId.eq(user!.id))
+      )[0]
+
+      const chatExist = await DataStore.query(
+        Chat,
+        (c) =>
+          c.Mechanic.userId.eq(mechanic!.userId!) &&
+          c.Customer.userId.eq(customer!.userId!)
+      )
+
+      if (chatExist.length > 0) {
+        console.log("CHAT ALREADY EXISTS")
+        return
+      }
+
+      const chat = await DataStore.save(
+        new Chat({
+          Mechanic: mechanic,
+          Customer: customer
+        })
+      )
+
+      console.log("CHAT", chat)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   if (loading) {
     return <div>Loading...</div>
@@ -70,28 +123,40 @@ const MechanicProfilePage = () => {
           {mechanic?.name}
         </Heading>
 
+        <Flex alignItems="center">
+          <Rating value={rating} />
+          <Text fontWeight="600">{rating}</Text>
+          <Text color="rgba(0,0,0,0.8)">
+            ({reviews.length} Review{reviews.length > 1 ? "s" : ""})
+          </Text>
+        </Flex>
+
+        <Heading level={4} margin="30px 0 10px 0" textDecoration="underline">
+          Shop Location:
+        </Heading>
         <View
           border="3px solid #161617"
           width={{ base: "100%", large: "100%" }}
-          marginTop="30px"
           height="500px"
         >
           <Map
             markers={[
               {
                 position: {
-                  lat: parseFloat(mechanic?.latitude!),
-                  lng: parseFloat(mechanic?.longitude!)
+                  lat: parseFloat(mechanic!.latitude!),
+                  lng: parseFloat(mechanic!.longitude!)
                 },
-                label: mechanic?.name
+                label: mechanic!.name!
               }
             ]}
-            center={[+mechanic?.latitude, +mechanic?.longitude]}
+            center={[+mechanic!.latitude!, +mechanic!.longitude!]}
           />
         </View>
 
         <Flex marginTop="50px">
-          <Button size="large">Contact Mechanic</Button>
+          <Button size="large" onClick={contactMechanicHandler}>
+            Contact Mechanic
+          </Button>
           <Button
             variation="primary"
             size="large"

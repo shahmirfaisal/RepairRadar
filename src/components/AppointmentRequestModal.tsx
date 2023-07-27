@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast"
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-  mechanic: UserModel
+  mechanic: LazyUser
 }
 
 const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
@@ -25,7 +25,7 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
           description,
           time,
           status: "REQUESTED",
-          Mechanic: mechanic as LazyUser,
+          Mechanic: mechanic,
           Customer: customer[0]
         })
       )

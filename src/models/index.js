@@ -4,9 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Review, Appointment, User } = initSchema(schema);
+const { Message, Chat, Review, Appointment, User } = initSchema(schema);
 
 export {
+  Message,
+  Chat,
   Review,
   Appointment,
   User

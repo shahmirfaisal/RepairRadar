@@ -6,19 +6,18 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
-import { MyIconProps } from "./MyIcon";
+import { ButtonProps, FlexProps, ImageProps, RatingProps, TextProps } from "@aws-amplify/ui-react";
 import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MechanicItemOverridesProps = {
+    "4"?: PrimitiveOverrideProps<TextProps>;
     MechanicItem?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
     Name?: PrimitiveOverrideProps<FlexProps>;
     "Melinda Marcus"?: PrimitiveOverrideProps<TextProps>;
     "Design Engineer at Cloth Studios"?: PrimitiveOverrideProps<TextProps>;
-    Followers?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon?: MyIconProps;
-    "99 Followers"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 446"?: PrimitiveOverrideProps<FlexProps>;
+    Rating?: PrimitiveOverrideProps<RatingProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type MechanicItemProps = React.PropsWithChildren<Partial<FlexProps> & {
@@ -26,6 +25,7 @@ export declare type MechanicItemProps = React.PropsWithChildren<Partial<FlexProp
     name?: String;
     onViewProfileClick?: (event: SyntheticEvent) => void;
     location?: String;
+    rating?: Number;
 } & {
     overrides?: MechanicItemOverridesProps | undefined | null;
 }>;

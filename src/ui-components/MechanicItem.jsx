@@ -7,11 +7,17 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
+import { Button, Flex, Image, Rating, Text } from "@aws-amplify/ui-react";
 export default function MechanicItem(props) {
-  const { image, name, onViewProfileClick, location, overrides, ...rest } =
-    props;
+  const {
+    image,
+    name,
+    onViewProfileClick,
+    location,
+    rating,
+    overrides,
+    ...rest
+  } = props;
   return (
     <Flex
       gap="13px"
@@ -21,6 +27,7 @@ export default function MechanicItem(props) {
       justifyContent="flex-start"
       alignItems="center"
       position="relative"
+      boxShadow="0px 1px 4px rgba(0, 0, 0, 0.10000000149011612)"
       padding="24px 24px 24px 24px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "MechanicItem")}
@@ -98,42 +105,35 @@ export default function MechanicItem(props) {
         ></Text>
       </Flex>
       <Flex
-        gap="16px"
+        gap="10px"
         direction="row"
         width="unset"
         height="unset"
         justifyContent="flex-start"
-        alignItems="flex-start"
+        alignItems="center"
         shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Followers")}
+        {...getOverrideProps(overrides, "Frame 446")}
       >
-        <MyIcon
-          width="24px"
-          height="24px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          overflow="hidden"
+        <Rating
+          width="unset"
+          height="unset"
           shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          type="group"
-          {...getOverrideProps(overrides, "MyIcon")}
-        ></MyIcon>
+          size="default"
+          value={rating}
+          {...getOverrideProps(overrides, "Rating")}
+        ></Rating>
         <Text
           fontFamily="Inter"
           fontSize="16px"
-          fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="center"
+          fontWeight="500"
+          color="rgba(0,0,0,1)"
+          lineHeight="19.363636016845703px"
+          textAlign="left"
           display="block"
           direction="column"
           justifyContent="unset"
-          letterSpacing="0.01px"
           width="unset"
           height="unset"
           gap="unset"
@@ -142,8 +142,8 @@ export default function MechanicItem(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="99 Followers"
-          {...getOverrideProps(overrides, "99 Followers")}
+          children={rating}
+          {...getOverrideProps(overrides, "4")}
         ></Text>
       </Flex>
       <Button

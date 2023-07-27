@@ -1,9 +1,17 @@
-import { Button, Flex, Heading, Image, View } from "@aws-amplify/ui-react"
+import {
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Rating,
+  Text,
+  View
+} from "@aws-amplify/ui-react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
 import Map from "../../components/Map"
 import { LazyReview, Review as ReviewModel } from "../../models"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { toast } from "react-hot-toast"
 import { DataStore } from "aws-amplify"
 import Review from "../../components/Review"
@@ -12,6 +20,12 @@ const MechanicProfilePage = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
   const [reviews, setReviews] = useState<LazyReview[]>([])
+
+  const rating = useMemo(() => {
+    return (
+      reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    )
+  }, [reviews])
 
   const getReviews = async () => {
     try {
@@ -53,10 +67,20 @@ const MechanicProfilePage = () => {
           {user?.email}
         </Heading>
 
+        <Flex alignItems="center" marginTop="10px">
+          <Rating value={rating} />
+          <Text fontWeight="600">{rating}</Text>
+          <Text color="rgba(0,0,0,0.8)">
+            ({reviews.length} Review{reviews.length > 1 ? "s" : ""})
+          </Text>
+        </Flex>
+
+        <Heading level={4} margin="30px 0 10px 0" textDecoration="underline">
+          Shop Location:
+        </Heading>
         <View
           border="3px solid #161617"
           width={{ base: "100%", large: "100%" }}
-          marginTop="30px"
           height="500px"
         >
           <Map

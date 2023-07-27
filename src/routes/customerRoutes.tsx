@@ -1,7 +1,10 @@
 import CustomerLayout from "../layouts/CustomerLayout"
 import AppointmentsPage from "../pages/customer/AppointmentsPage"
+import ChatLayout from "../layouts/ChatLayout"
+import CustomerProfilePage from "../pages/customer/CustomerProfilePage"
 import FindMechanicsPage from "../pages/customer/FindMechanicsPage"
 import MechanicProfilePage from "../pages/customer/MechanicProfilePage"
+import ChatPage from "../pages/customer/ChatPage"
 
 export const customerRoutes = [
   {
@@ -17,11 +20,17 @@ export const customerRoutes = [
       },
       {
         path: "/customer/chat",
-        element: <h1>Customer Chat</h1>
+        element: <ChatLayout />,
+        children: [
+          {
+            path: ":id",
+            element: <ChatPage />
+          }
+        ]
       },
       {
         path: "/customer/profile",
-        element: <h1>Customer Profile</h1>
+        element: <CustomerProfilePage />
       },
       {
         path: "/customer/mechanic-profile/:id",
