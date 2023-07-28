@@ -32,12 +32,13 @@ const CustomerProfilePage = () => {
   }, [])
 
   return (
-    <View marginBottom="100px">
-      <Heading level={1} marginBottom="30px">
-        Your Profile
-      </Heading>
-
-      <View marginTop="50px">
+    <View>
+      <View
+        backgroundColor="white"
+        marginTop="20px"
+        padding="30px"
+        borderRadius="10px"
+      >
         <Image
           alt={user!.name}
           src={user!.picture || "/blank-profile-picture.webp"}
@@ -88,15 +89,22 @@ const CustomerProfilePage = () => {
         </Flex> */}
       </View>
 
-      <Heading level={2} marginTop="50px" marginBottom="20px">
-        Your Reviews
-      </Heading>
+      <View
+        backgroundColor="white"
+        marginTop="20px"
+        padding="30px"
+        borderRadius="10px"
+      >
+        <Heading level={2} marginBottom="20px">
+          Your Reviews
+        </Heading>
 
-      <Flex direction="column">
-        {reviews.map((review) => (
-          <Review review={review} />
-        ))}
-      </Flex>
+        <Flex direction="column">
+          {reviews.map((review) => (
+            <Review review={review} />
+          ))}
+        </Flex>
+      </View>
     </View>
   )
 }

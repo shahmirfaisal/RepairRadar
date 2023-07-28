@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #b5c2ca;
+}
+
 .stepper .step.active,
 .stepper .step.completed {
   background-color: #161617;
@@ -19,5 +23,5 @@
 
 .chat-item:hover,
 .chat-item.active {
-  background-color: #f3f3f3;
+  background-color: #f0f3f4;
 }

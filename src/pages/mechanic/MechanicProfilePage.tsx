@@ -43,12 +43,13 @@ const MechanicProfilePage = () => {
   }, [])
 
   return (
-    <View marginBottom="100px">
-      <Heading level={1} marginBottom="30px">
-        Your Profile
-      </Heading>
-
-      <View marginTop="50px">
+    <View>
+      <View
+        padding="30px"
+        backgroundColor="white"
+        borderRadius="10px"
+        marginTop="20px"
+      >
         <Image
           alt={user?.name}
           src={user?.picture}
@@ -79,7 +80,7 @@ const MechanicProfilePage = () => {
           Shop Location:
         </Heading>
         <View
-          border="3px solid #161617"
+          border="3px solid #D6DDE1"
           width={{ base: "100%", large: "100%" }}
           height="500px"
         >
@@ -96,27 +97,34 @@ const MechanicProfilePage = () => {
             center={[+user!.latitude!, +user!.longitude!]}
           />
         </View>
+
+        <Flex marginTop="50px">
+          <Button
+            variation="primary"
+            size="large"
+            onClick={() => navigate("/mechanic/profile/edit")}
+          >
+            Edit Profile
+          </Button>
+        </Flex>
       </View>
 
-      <Flex marginTop="50px">
-        <Button
-          variation="primary"
-          size="large"
-          onClick={() => navigate("/mechanic/profile/edit")}
-        >
-          Edit Profile
-        </Button>
-      </Flex>
+      <View
+        backgroundColor="white"
+        marginTop="20px"
+        padding="30px"
+        borderRadius="10px"
+      >
+        <Heading level={2} marginBottom="20px">
+          Reviews from Customers
+        </Heading>
 
-      <Heading level={2} marginTop="50px" marginBottom="20px">
-        Reviews from Customers
-      </Heading>
-
-      <Flex direction="column">
-        {reviews.map((review) => (
-          <Review review={review} />
-        ))}
-      </Flex>
+        <Flex direction="column">
+          {reviews.map((review) => (
+            <Review review={review} />
+          ))}
+        </Flex>
+      </View>
     </View>
   )
 }

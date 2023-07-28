@@ -7,18 +7,18 @@ import {
   LazyUser
 } from "../../models"
 import { useAuth } from "../../context/AuthContext"
-import { Heading } from "@aws-amplify/ui-react"
+import { Flex, Heading, View } from "@aws-amplify/ui-react"
 import moment from "moment"
 import AppointmentsSection from "../../components/AppointmentsSection"
 import AddReviewModal from "../../components/AddReviewModal"
 import ReviewViewModal from "../../components/ReviewViewModal"
-
-interface ExtendedLazyAppointment extends LazyAppointment {
-  mechanic?: LazyUser
-  customer?: LazyUser
-  Mechanic: Promise<LazyUser>
-  Customer: Promise<LazyUser>
-}
+import {
+  AiOutlineQuestionCircle,
+  AiOutlineCheckCircle,
+  AiOutlineWarning
+} from "react-icons/ai"
+import { MdOutlineCancel } from "react-icons/md"
+import { BiTimeFive } from "react-icons/bi"
 
 const AppointmentsPage = () => {
   const { user } = useAuth()
@@ -53,9 +53,7 @@ const AppointmentsPage = () => {
   }, [])
 
   return (
-    <div>
-      <Heading level={1}>Appointments</Heading>
-
+    <Flex direction="column" gap="20px" marginTop="20px">
       <AppointmentsSection
         appointments={appointments}
         filter={(appointment) =>
@@ -64,6 +62,7 @@ const AppointmentsPage = () => {
         }
         type="Customer"
         title="Requested"
+        Icon={AiOutlineQuestionCircle}
       />
 
       <AppointmentsSection
@@ -71,6 +70,7 @@ const AppointmentsPage = () => {
         filter={(appointment) => appointment.status === "ACCEPTED"}
         type="Customer"
         title="Accepted"
+        Icon={BiTimeFive}
       />
 
       <AppointmentsSection
@@ -78,6 +78,7 @@ const AppointmentsPage = () => {
         filter={(appointment) => appointment.status === "REJECTED"}
         type="Customer"
         title="Rejected"
+        Icon={MdOutlineCancel}
       />
 
       <AppointmentsSection
@@ -87,6 +88,7 @@ const AppointmentsPage = () => {
         title="Completed"
         onAddReview={openAddReviewModal}
         onViewReview={openReviewViewModal}
+        Icon={AiOutlineCheckCircle}
       />
 
       <AppointmentsSection
@@ -97,6 +99,7 @@ const AppointmentsPage = () => {
         }
         type="Customer"
         title="Expired"
+        Icon={AiOutlineWarning}
       />
 
       {showAddReviewModal && appointment && (
@@ -112,7 +115,7 @@ const AppointmentsPage = () => {
           review={review}
         />
       )}
-    </div>
+    </Flex>
   )
 }
 

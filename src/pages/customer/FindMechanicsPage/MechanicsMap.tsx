@@ -8,7 +8,7 @@ interface Props {
 
 const MechanicsMap = ({ mechanics }: Props) => {
   return (
-    <View border="3px solid #161617" width={{ base: "100%" }} height="500px">
+    <View border="3px solid #D6DDE1" width={{ base: "100%" }} height="500px">
       <Map
         center={[51.505, -0.09]}
         markers={mechanics.map((mechanic) => ({

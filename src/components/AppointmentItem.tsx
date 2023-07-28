@@ -56,9 +56,9 @@ const AppointmentItem = ({
           : appointment.mechanic?.name
       }
       image={
-        type === "Mechanic"
+        (type === "Mechanic"
           ? appointment.customer?.picture
-          : appointment.mechanic?.picture
+          : appointment.mechanic?.picture) || "/blank-profile-picture.webp"
       }
       time={moment(appointment.time).format("MMMM Do YYYY, h:mm a")}
       descriptionLabel={

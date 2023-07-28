@@ -73,14 +73,30 @@ const FindMechanicsPage = () => {
 
   return (
     <View>
-      <Heading level={1} marginBottom="30px">
-        Find Mechanics
-      </Heading>
-      <MechanicsMap mechanics={mechanics} />
+      <View
+        backgroundColor="white"
+        marginTop="20px"
+        padding="30px"
+        borderRadius="10px"
+      >
+        <Heading level={2} marginBottom="30px" fontWeight={700}>
+          Find Nearby Mechanics
+        </Heading>
+        <MechanicsMap mechanics={mechanics} />
+      </View>
 
-      <Grid marginTop="50px" templateColumns="1fr 1fr">
+      <Grid
+        marginTop="20px"
+        templateColumns="1fr 1fr"
+        borderRadius="10px"
+        backgroundColor="white"
+        overflow="hidden"
+      >
         {mechanics.map((mechanic) => (
-          <Mechanic mechanic={mechanic} key={mechanic.id} />
+          <>
+            <Mechanic mechanic={mechanic} key={mechanic.id} />
+            <Mechanic mechanic={mechanic} key={mechanic.id} />
+          </>
         ))}
       </Grid>
     </View>

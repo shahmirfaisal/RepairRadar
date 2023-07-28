@@ -9,9 +9,10 @@ import {
 import { useParams } from "react-router-dom"
 import { toast } from "react-hot-toast"
 import { DataStore } from "aws-amplify"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Message from "../components/Chat/Message"
 import { useAuth } from "../context/AuthContext"
+import { AiOutlineSend } from "react-icons/ai"
 
 interface ExtendedLazyChat extends LazyChat {
   customer?: LazyUser
@@ -25,6 +26,7 @@ const ChatPage = () => {
   const [text, setText] = useState("")
   const { id } = useParams()
   const { user } = useAuth()
+  const chatBody = useRef(null)
 
   const getChat = async () => {
     try {
@@ -88,12 +90,16 @@ const ChatPage = () => {
     }
   }
 
+  useEffect(() => {
+    chatBody.current?.scrollTo(0, chatBody.current?.scrollHeight)
+  }, [messages])
+
   if (!chat) {
     return <div>Loading...</div>
   }
 
   return (
-    <Flex direction="column" height="100vh">
+    <Flex direction="column" height="86vh">
       <Flex
         alignItems="center"
         gap="10px"
@@ -116,6 +122,7 @@ const ChatPage = () => {
         direction="column"
         gap="50px"
         padding="20px"
+        ref={chatBody}
       >
         {messages.map((message) => (
           <Message key={message.id} message={message} />
@@ -129,7 +136,7 @@ const ChatPage = () => {
           placeholder="Your message..."
           innerEndComponent={
             <Button variation="primary" onClick={sendMessageHandler}>
-              Send
+              <AiOutlineSend size={20} />
             </Button>
           }
           value={text}
