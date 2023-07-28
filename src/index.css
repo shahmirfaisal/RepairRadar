@@ -17,6 +17,7 @@
   height: 100%;
 }
 
-.chat-item:hover {
+.chat-item:hover,
+.chat-item.active {
   background-color: #f3f3f3;
 }

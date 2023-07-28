@@ -4,7 +4,7 @@ import ChatLayout from "../layouts/ChatLayout"
 import CustomerProfilePage from "../pages/customer/CustomerProfilePage"
 import FindMechanicsPage from "../pages/customer/FindMechanicsPage"
 import MechanicProfilePage from "../pages/customer/MechanicProfilePage"
-import ChatPage from "../pages/customer/ChatPage"
+import ChatPage from "../pages/ChatPage"
 
 export const customerRoutes = [
   {

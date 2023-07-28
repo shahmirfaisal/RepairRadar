@@ -12,7 +12,7 @@ interface User {
   id: string
   name: string
   email: string
-  type: string
+  type: "Mechanic" | "Customer"
   picture: string | undefined
   latitude: string | undefined
   longitude: string | undefined

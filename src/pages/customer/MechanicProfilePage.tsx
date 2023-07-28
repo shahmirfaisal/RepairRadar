@@ -74,11 +74,11 @@ const MechanicProfilePage = () => {
         await DataStore.query(User, (u) => u.userId.eq(user!.id))
       )[0]
 
-      const chatExist = await DataStore.query(
-        Chat,
-        (c) =>
-          c.Mechanic.userId.eq(mechanic!.userId!) &&
+      const chatExist = await DataStore.query(Chat, (c) =>
+        c.and((c) => [
+          c.Mechanic.userId.eq(mechanic!.userId!),
           c.Customer.userId.eq(customer!.userId!)
+        ])
       )
 
       if (chatExist.length > 0) {

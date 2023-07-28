@@ -1,30 +1,33 @@
 import { Flex, Grid, Heading, Image, Text, View } from "@aws-amplify/ui-react"
-import { Outlet } from "react-router-dom"
-
-const ChatItem = () => {
-  return (
-    <Flex
-      gap="10px"
-      alignItems="center"
-      padding="15px"
-      style={{ cursor: "pointer" }}
-      className="chat-item"
-      border="1px solid rgba(0,0,0,0.1)"
-      borderWidth="1px 0 1px 0"
-    >
-      <Image
-        src="/blank-profile-picture.webp"
-        alt="Profile Picture"
-        width="50px"
-        height="50px"
-        borderRadius="50%"
-      />
-      <Text>Shahmir Faisal</Text>
-    </Flex>
-  )
-}
+import { useEffect, useState } from "react"
+import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { Chat, LazyChat, LazyUser } from "../models"
+import { toast } from "react-hot-toast"
+import { DataStore } from "aws-amplify"
+import { useAuth } from "../context/AuthContext"
+import ChatItem from "../components/Chat/ChatItem"
 
 const ChatLayout = () => {
+  const [chats, setChats] = useState<LazyChat[]>([])
+  const { user } = useAuth()
+
+  const getChats = async () => {
+    try {
+      const chats = await DataStore.query(Chat, (c) =>
+        user!.type === "Customer"
+          ? c.Customer.userId.eq(user!.id)
+          : c.Mechanic.userId.eq(user!.id)
+      )
+      setChats(chats)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getChats()
+  }, [])
+
   return (
     <Grid templateColumns="250px 1fr">
       <View position="relative">
@@ -47,10 +50,9 @@ const ChatLayout = () => {
             All Conversations
           </Heading>
 
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
+          {chats.map((chat) => (
+            <ChatItem key={chat.id} chat={chat} type={user!.type} />
+          ))}
         </View>
       </View>
 

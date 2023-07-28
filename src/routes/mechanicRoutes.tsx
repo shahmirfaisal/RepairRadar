@@ -1,6 +1,7 @@
+import ChatLayout from "../layouts/ChatLayout"
 import MechanicLayout from "../layouts/MechanicLayout"
 import AppointmentsPage from "../pages/mechanic/AppointmentsPage"
-import ChatPage from "../pages/mechanic/ChatPage"
+import ChatPage from "../pages/ChatPage"
 import DashboardPage from "../pages/mechanic/DashboardPage"
 import MechanicProfileEditPage from "../pages/mechanic/MechanicProfileEditPage"
 import MechanicProfilePage from "../pages/mechanic/MechanicProfilePage"
@@ -19,7 +20,13 @@ export const mechanicRoutes = [
       },
       {
         path: "/mechanic/chat",
-        element: <ChatPage />
+        element: <ChatLayout />,
+        children: [
+          {
+            path: ":id",
+            element: <ChatPage />
+          }
+        ]
       },
       {
         path: "/mechanic/profile",
