@@ -1,6 +1,6 @@
 import { View } from "@aws-amplify/ui-react"
 import { IconType } from "react-icons"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useMatch } from "react-router-dom"
 
 interface Props {
   children: string
@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const SidebarItem = ({ children, href, onClick, Icon }: Props) => {
-  const location = useLocation()
-  const isActive = location.pathname === `${href!}`
+  const isActive = useMatch(`${href!}`)
 
   return (
     <View
@@ -20,8 +19,8 @@ export const SidebarItem = ({ children, href, onClick, Icon }: Props) => {
       // borderWidth={isActive ? "0 0 4px 0" : "0px"}
       // borderColor="black"
       // borderStyle="solid"
-      backgroundColor={isActive ? "black" : "transparent"}
-      color={isActive ? "white" : "black"}
+      backgroundColor={Boolean(isActive) ? "black" : "transparent"}
+      color={Boolean(isActive) ? "white" : "black"}
       borderRadius="50px"
     >
       {href ? (

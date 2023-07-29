@@ -12,15 +12,18 @@ export const mechanicRoutes = [
     children: [
       {
         path: "/mechanic/dashboard",
-        element: <DashboardPage />
+        element: <DashboardPage />,
+        title: "Dashboard"
       },
       {
         path: "/mechanic/appointments",
-        element: <AppointmentsPage />
+        element: <AppointmentsPage />,
+        title: "Appointments"
       },
       {
         path: "/mechanic/chat",
         element: <ChatLayout />,
+        title: "Chat",
         children: [
           {
             path: ":id",
@@ -30,11 +33,13 @@ export const mechanicRoutes = [
       },
       {
         path: "/mechanic/profile",
-        element: <MechanicProfilePage />
+        element: <MechanicProfilePage />,
+        title: "Your Profile"
       },
       {
         path: "/mechanic/profile/edit",
-        element: <MechanicProfileEditPage />
+        element: <MechanicProfileEditPage />,
+        title: "Edit Profile"
       }
     ]
   }

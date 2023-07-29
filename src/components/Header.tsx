@@ -1,6 +1,10 @@
 import { Flex, Heading } from "@aws-amplify/ui-react"
 
-const Header = () => {
+interface Props {
+  title: string
+}
+
+const Header = ({ title }: Props) => {
   return (
     <Flex
       backgroundColor="white"
@@ -9,7 +13,7 @@ const Header = () => {
       justifyContent="center"
     >
       <Heading level={4} textAlign="center">
-        Find Mechanics
+        {title}
       </Heading>
     </Flex>
   )

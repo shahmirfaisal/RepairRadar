@@ -1,5 +1,5 @@
 import { Grid, View } from "@aws-amplify/ui-react"
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, useLocation, useOutlet } from "react-router-dom"
 import { SidebarItem } from "../components/Sidebar/SidebarItem"
 import Sidebar from "../components/Sidebar"
 import withAuth from "../hoc/withAuth"
@@ -11,7 +11,9 @@ import { AiOutlineSchedule, AiOutlineLogout } from "react-icons/ai"
 import { BsChatDots, BsPerson } from "react-icons/bs"
 
 let MechanicLayout: React.FC = () => {
-  const { pathname } = useLocation()
+  const outlet = useOutlet()
+
+  const title = outlet?.props.children.props.match.route.title
 
   return (
     <Grid templateColumns="250px 1fr">
@@ -37,7 +39,7 @@ let MechanicLayout: React.FC = () => {
       </View>
 
       <View padding={"10px 30px"}>
-        <Header />
+        <Header title={title as string} />
         <Outlet />
       </View>
     </Grid>

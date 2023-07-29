@@ -12,15 +12,18 @@ export const customerRoutes = [
     children: [
       {
         path: "/customer/find-mechanics",
-        element: <FindMechanicsPage />
+        element: <FindMechanicsPage />,
+        title: "Find Mechanics"
       },
       {
         path: "/customer/appointments",
-        element: <AppointmentsPage />
+        element: <AppointmentsPage />,
+        title: "Appointments"
       },
       {
         path: "/customer/chat",
         element: <ChatLayout />,
+        title: "Chat",
         children: [
           {
             path: ":id",
@@ -30,11 +33,13 @@ export const customerRoutes = [
       },
       {
         path: "/customer/profile",
-        element: <CustomerProfilePage />
+        element: <CustomerProfilePage />,
+        title: "Your Profile"
       },
       {
         path: "/customer/mechanic-profile/:id",
-        element: <MechanicProfilePage />
+        element: <MechanicProfilePage />,
+        title: "Mechanic Profile"
       }
     ]
   }

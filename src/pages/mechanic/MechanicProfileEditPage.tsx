@@ -65,14 +65,16 @@ const MechanicProfileEditPage = () => {
   }
 
   return (
-    <View marginBottom="100px">
-      <Heading level={1} marginBottom="30px">
-        Edit Profile
-      </Heading>
-
+    <View
+      backgroundColor="white"
+      borderRadius="10px"
+      padding="30px"
+      marginTop="20px"
+    >
       <Flex direction="column" alignItems="flex-start" gap="20px">
         <Image
           src={image}
+          alt={user?.name}
           width="150px"
           height="150px"
           objectFit="contain"
