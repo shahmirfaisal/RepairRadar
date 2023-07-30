@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/AuthContext"
 import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import MechanicItem from "../../../ui-components/MechanicItem"
+import LayoutItem from "../../../components/LayoutItem"
 
 interface Props {
   mechanic: UserModel
@@ -73,23 +74,16 @@ const FindMechanicsPage = () => {
 
   return (
     <View>
-      <View
-        backgroundColor="white"
-        marginTop="20px"
-        padding="30px"
-        borderRadius="10px"
-      >
+      <LayoutItem>
         <Heading level={2} marginBottom="30px" fontWeight={700}>
           Find Nearby Mechanics
         </Heading>
         <MechanicsMap mechanics={mechanics} />
-      </View>
+      </LayoutItem>
 
-      <Grid
-        marginTop="20px"
-        templateColumns="1fr 1fr"
-        borderRadius="10px"
-        backgroundColor="white"
+      <LayoutItem
+        component={Grid}
+        templateColumns={{ base: "1fr", large: "1fr 1fr" }}
         overflow="hidden"
       >
         {mechanics.map((mechanic) => (
@@ -98,7 +92,7 @@ const FindMechanicsPage = () => {
             <Mechanic mechanic={mechanic} key={mechanic.id} />
           </>
         ))}
-      </Grid>
+      </LayoutItem>
     </View>
   )
 }

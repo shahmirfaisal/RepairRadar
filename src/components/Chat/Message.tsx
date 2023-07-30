@@ -32,6 +32,8 @@ const Message = ({ message: initialMessage }: Props) => {
           width="40px"
           height="40px"
           borderRadius="50%"
+          objectFit="cover"
+          objectPosition="center"
         />
         <Heading level={6}>{message!.sender?.name}</Heading>
         {/* format the date like this: Jul 24, 2023, 9:11 PM */}

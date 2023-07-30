@@ -15,6 +15,7 @@ import { usePickLocation } from "../../hooks/usePickLocation"
 import { toast } from "react-hot-toast"
 import { Auth, DataStore } from "aws-amplify"
 import { User } from "../../models"
+import LayoutItem from "../../components/LayoutItem"
 
 const MechanicProfileEditPage = () => {
   const { user, authUser, setName: setUserName } = useAuth()
@@ -65,12 +66,7 @@ const MechanicProfileEditPage = () => {
   }
 
   return (
-    <View
-      backgroundColor="white"
-      borderRadius="10px"
-      padding="30px"
-      marginTop="20px"
-    >
+    <LayoutItem>
       <Flex direction="column" alignItems="flex-start" gap="20px">
         <Image
           src={image}
@@ -132,7 +128,7 @@ const MechanicProfileEditPage = () => {
       >
         Save
       </Button>
-    </View>
+    </LayoutItem>
   )
 }
 

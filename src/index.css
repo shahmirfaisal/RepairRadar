@@ -11,6 +11,12 @@ body {
   background-color: #b5c2ca;
 }
 
+@media (max-width: 768px) {
+  body {
+    background-color: #fff;
+  }
+}
+
 .stepper .step.active,
 .stepper .step.completed {
   background-color: #161617;

@@ -39,6 +39,16 @@ const Review = ({ review: initialReview }: Props) => {
       overrides={{
         ReviewItem: {
           width: "100%"
+        },
+        "Frame 445": {
+          direction: {
+            base: "column",
+            small: "row"
+          },
+          alignItems: {
+            base: "flex-start",
+            small: "center"
+          }
         }
       }}
     />

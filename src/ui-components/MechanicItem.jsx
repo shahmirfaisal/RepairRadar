@@ -34,8 +34,8 @@ export default function MechanicItem(props) {
       {...rest}
     >
       <Image
-        width="160px"
-        height="160px"
+        width="140px"
+        height="140px"
         display="block"
         gap="unset"
         alignItems="unset"
@@ -147,10 +147,10 @@ export default function MechanicItem(props) {
         ></Text>
       </Flex>
       <Button
-        width="272px"
-        height="48px"
+        width="unset"
+        height="unset"
         shrink="0"
-        size="large"
+        size="default"
         isDisabled={false}
         variation="primary"
         children="View Profile"

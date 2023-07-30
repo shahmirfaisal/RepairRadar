@@ -112,13 +112,15 @@ const ChatPage = () => {
           width="50px"
           height="50px"
           borderRadius="50%"
+          objectFit="cover"
+          objectPosition="center"
         />
         <Heading level={5}>{chat.mechanic?.name}</Heading>
       </Flex>
 
       <Flex
         height="90vh"
-        style={{ overflowY: "scroll" }}
+        overflow="auto"
         direction="column"
         gap="50px"
         padding="20px"

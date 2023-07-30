@@ -15,6 +15,7 @@ import { useState, useEffect, useMemo } from "react"
 import { toast } from "react-hot-toast"
 import { DataStore } from "aws-amplify"
 import Review from "../../components/Review"
+import LayoutItem from "../../components/LayoutItem"
 
 const MechanicProfilePage = () => {
   const { user } = useAuth()
@@ -44,12 +45,7 @@ const MechanicProfilePage = () => {
 
   return (
     <View>
-      <View
-        padding="30px"
-        backgroundColor="white"
-        borderRadius="10px"
-        marginTop="20px"
-      >
+      <LayoutItem>
         <Image
           alt={user?.name}
           src={user?.picture}
@@ -68,7 +64,7 @@ const MechanicProfilePage = () => {
           {user?.email}
         </Heading>
 
-        <Flex alignItems="center" marginTop="10px">
+        <Flex alignItems="center" marginTop="10px" wrap="wrap">
           <Rating value={rating} />
           <Text fontWeight="600">{rating}</Text>
           <Text color="rgba(0,0,0,0.8)">
@@ -107,14 +103,9 @@ const MechanicProfilePage = () => {
             Edit Profile
           </Button>
         </Flex>
-      </View>
+      </LayoutItem>
 
-      <View
-        backgroundColor="white"
-        marginTop="20px"
-        padding="30px"
-        borderRadius="10px"
-      >
+      <LayoutItem>
         <Heading level={2} marginBottom="20px">
           Reviews from Customers
         </Heading>
@@ -124,7 +115,7 @@ const MechanicProfilePage = () => {
             <Review review={review} />
           ))}
         </Flex>
-      </View>
+      </LayoutItem>
     </View>
   )
 }

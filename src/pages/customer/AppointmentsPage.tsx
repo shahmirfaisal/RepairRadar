@@ -53,7 +53,7 @@ const AppointmentsPage = () => {
   }, [])
 
   return (
-    <Flex direction="column" gap="20px" marginTop="20px">
+    <Flex direction="column" marginTop="20px">
       <AppointmentsSection
         appointments={appointments}
         filter={(appointment) =>

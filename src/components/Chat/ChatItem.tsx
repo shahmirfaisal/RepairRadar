@@ -48,6 +48,8 @@ const ChatItem = ({ chat: initialChat, type }: Props) => {
         width="50px"
         height="50px"
         borderRadius="50%"
+        objectFit="cover"
+        objectPosition="center"
       />
       <Text>
         {type === "Customer" ? chat.mechanic?.name : chat.customer?.name}

@@ -6,6 +6,7 @@ import {
 import { Heading, Text, View } from "@aws-amplify/ui-react"
 import AppointmentItem from "./AppointmentItem"
 import { IconType } from "react-icons"
+import LayoutItem from "./LayoutItem"
 
 interface Props {
   appointments: LazyAppointment[]
@@ -33,7 +34,7 @@ const AppointmentsSection = ({
   Icon
 }: Props) => {
   return (
-    <View backgroundColor="white" padding="30px" borderRadius="10px">
+    <LayoutItem>
       <Heading level={3}>
         {Icon && <Icon size={25} />} {title}
       </Heading>
@@ -52,7 +53,7 @@ const AppointmentsSection = ({
           />
         ))}
       </View>
-    </View>
+    </LayoutItem>
   )
 }
 

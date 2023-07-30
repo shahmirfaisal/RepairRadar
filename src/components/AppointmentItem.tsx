@@ -83,6 +83,18 @@ const AppointmentItem = ({
             cursor: "pointer"
           }
         },
+
+        "Frame 437": {
+          direction: {
+            base: "column",
+            small: "row"
+          },
+          alignItems: {
+            base: "flex-start",
+            small: "center"
+          }
+        },
+
         "Frame 439": {
           display:
             appointment.status === "REQUESTED" &&

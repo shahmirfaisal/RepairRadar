@@ -10,6 +10,7 @@ import AppointmentRequestModal from "../../components/AppointmentRequestModal"
 import Map from "../../components/Map"
 import Review from "../../components/Review"
 import { useAuth } from "../../context/AuthContext"
+import LayoutItem from "../../components/LayoutItem"
 
 const CustomerProfilePage = () => {
   const { user } = useAuth()
@@ -33,12 +34,7 @@ const CustomerProfilePage = () => {
 
   return (
     <View>
-      <View
-        backgroundColor="white"
-        marginTop="20px"
-        padding="30px"
-        borderRadius="10px"
-      >
+      <LayoutItem>
         <Image
           alt={user!.name}
           src={user!.picture || "/blank-profile-picture.webp"}
@@ -87,14 +83,9 @@ const CustomerProfilePage = () => {
             Request Appointment
           </Button>
         </Flex> */}
-      </View>
+      </LayoutItem>
 
-      <View
-        backgroundColor="white"
-        marginTop="20px"
-        padding="30px"
-        borderRadius="10px"
-      >
+      <LayoutItem>
         <Heading level={2} marginBottom="20px">
           Your Reviews
         </Heading>
@@ -104,7 +95,7 @@ const CustomerProfilePage = () => {
             <Review review={review} />
           ))}
         </Flex>
-      </View>
+      </LayoutItem>
     </View>
   )
 }

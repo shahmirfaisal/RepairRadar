@@ -1,7 +1,13 @@
-import { Flex, Heading, Image, Text } from "@aws-amplify/ui-react"
+import { Flex, Heading, Image, Text, View } from "@aws-amplify/ui-react"
 import { useAuth } from "../../context/AuthContext"
+import { AiFillCloseCircle } from "react-icons/ai"
 
-const Sidebar = ({ children }: { children: React.ReactNode }) => {
+interface Props {
+  children: React.ReactNode
+  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Sidebar = ({ children, setShowSidebar }: Props) => {
   const { user } = useAuth()
 
   return (
@@ -19,6 +25,20 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
       margin="10px"
       gap="20px"
     >
+      <View
+        display={{ base: "block", medium: "none" }}
+        position="absolute"
+        top="10px"
+        right="10px"
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          setShowSidebar(false)
+          console.log("CLOSE")
+        }}
+      >
+        <AiFillCloseCircle size={25} />
+      </View>
+
       {children}
 
       <Flex direction="column" marginTop="auto" alignItems="center" gap="10px">
