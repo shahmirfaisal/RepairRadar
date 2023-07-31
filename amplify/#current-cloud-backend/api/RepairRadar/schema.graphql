@@ -1,0 +1,42 @@
+type Message @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String!
+  Sender: User @hasOne
+  Chat: Chat @hasOne
+}
+
+type Chat @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Customer: User @hasOne
+  Mechanic: User @hasOne
+}
+
+type Review @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Customer: User @hasOne
+  Mechanic: User @hasOne
+  rating: Float!
+  text: String!
+  Appointment: Appointment @hasOne
+}
+
+type Appointment @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Customer: User @hasOne
+  Mechanic: User @hasOne
+  time: AWSDateTime!
+  status: String!
+  description: String!
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: ID!
+  name: String!
+  email: String!
+  type: String!
+  picture: String
+  latitude: String
+  longitude: String
+}
+ 

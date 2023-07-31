@@ -1,0 +1,16 @@
+{
+  "resourceName": "s3repairradarstorage25cc0337",
+  "bucketName": "repairradar-storage-25cc0337",
+  "policyUUID": "59771088",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}

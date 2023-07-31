@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "RepairRadar",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "S3DeploymentBucket": "amplify-repairradar-staging-152716-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/b6c2643a35b36ec9c480ff8e152f601f9818e2d9"
+}

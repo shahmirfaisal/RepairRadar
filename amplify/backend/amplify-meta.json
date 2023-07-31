@@ -1,0 +1,135 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-repairradar-staging-152716-authRole",
+      "UnauthRoleArn": "arn:aws:iam::775256015443:role/amplify-repairradar-staging-152716-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::775256015443:role/amplify-repairradar-staging-152716-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-repairradar-staging-152716-deployment",
+      "UnauthRoleName": "amplify-repairradar-staging-152716-unauthRole",
+      "StackName": "amplify-repairradar-staging-152716",
+      "StackId": "arn:aws:cloudformation:eu-north-1:775256015443:stack/amplify-repairradar-staging-152716/956423a0-20c8-11ee-bd27-0647fa237380",
+      "AmplifyAppId": "d3p2h2rwfj9j0s"
+    }
+  },
+  "api": {
+    "RepairRadar": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          }
+        },
+        "GraphQLAPIIdOutput": "plkubttj6jh3novxsis2xr7wie",
+        "GraphQLAPIEndpointOutput": "https://r36twwbepzfnjc4tkh6csdsvrq.appsync-api.eu-north-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-gjxypsz3xban3id46okmcg5jp4"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-07-31T04:11:09.893Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiRepairRadar"
+      },
+      "lastPushDirHash": "zup0avq06CL0HQSkO6Zk8e4bl64="
+    }
+  },
+  "auth": {
+    "repairradar38847973": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "eu-north-1_R2BgR17cr",
+        "AppClientIDWeb": "4u19t8mtdk5fidic0jmdf5p4ne",
+        "AppClientID": "12cac1qdrovud2dpbru9p56osu",
+        "IdentityPoolId": "eu-north-1:1833ef0a-8f39-4258-83cc-db7f467cd5d2",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-north-1:775256015443:userpool/eu-north-1_R2BgR17cr",
+        "IdentityPoolName": "repairradar38847973_identitypool_38847973__staging",
+        "UserPoolName": "repairradar38847973_userpool_38847973"
+      },
+      "lastPushTimeStamp": "2023-07-31T04:11:09.911Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/auth/repairradar38847973-cloudformation-template.json",
+        "logicalId": "authrepairradar38847973"
+      }
+    }
+  },
+  "geo": {
+    "map8f0e7099": {
+      "accessType": "AuthorizedUsers",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "repairradar38847973"
+        }
+      ],
+      "isDefault": true,
+      "mapStyle": "VectorEsriStreets",
+      "providerPlugin": "awscloudformation",
+      "service": "Map",
+      "output": {
+        "Style": "VectorEsriStreets",
+        "Region": "eu-north-1",
+        "Arn": "arn:aws:geo:eu-north-1:775256015443:map/map8f0e7099-staging",
+        "Name": "map8f0e7099-staging"
+      },
+      "lastPushTimeStamp": "2023-07-31T04:11:09.935Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/geo/map8f0e7099-cloudformation-template.json",
+        "logicalId": "geomap8f0e7099"
+      }
+    }
+  },
+  "storage": {
+    "s3repairradarstorage25cc0337": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "output": {
+        "BucketName": "repairradar-storage-25cc0337152716-staging",
+        "Region": "eu-north-1"
+      },
+      "lastPushTimeStamp": "2023-07-31T04:11:17.040Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3repairradarstorage25cc0337"
+      }
+    }
+  }
+}
