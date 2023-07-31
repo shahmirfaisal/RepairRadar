@@ -2,6 +2,7 @@ import { Button, Flex, Heading, Text, View } from "@aws-amplify/ui-react"
 import { useState } from "react"
 import LocationPickerMap from "../LocationPickerMap"
 import { usePickLocation } from "../../hooks/usePickLocation"
+import { useNavigate } from "react-router-dom"
 
 const Onboarding3 = () => {
   const {
@@ -10,6 +11,7 @@ const Onboarding3 = () => {
     pickCurrentLocation,
     saveLocation
   } = usePickLocation(null)
+  const navigate = useNavigate()
 
   return (
     <Flex direction="column" alignItems="center" gap="30px" marginTop="40px">
@@ -37,7 +39,14 @@ const Onboarding3 = () => {
         />
       </View>
 
-      <Button variation="primary" size="large" onClick={() => saveLocation()}>
+      <Button
+        variation="primary"
+        size="large"
+        onClick={async () => {
+          await saveLocation()
+          navigate("/mechanic/dashboard")
+        }}
+      >
         Save Shop Location
       </Button>
     </Flex>

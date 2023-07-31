@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useAuth } from "../context/AuthContext"
 import Onboarding1 from "../ui-components/Onboarding1"
 import { Stepper } from "react-form-stepper"
@@ -6,6 +6,8 @@ import { View } from "@aws-amplify/ui-react"
 import Onboarding2 from "../ui-components/Onboarding2"
 import Onboarding3 from "../components/Onboarding3"
 import { useImagePicker } from "../hooks/useImagePicker"
+import withAuth from "../hoc/withAuth"
+import { useNavigate } from "react-router-dom"
 
 const steps = [
   { label: "Setup Profile" },
@@ -13,12 +15,22 @@ const steps = [
   { label: "Provide Location" }
 ]
 
-const OnboardingPage = () => {
+let OnboardingPage: React.FC = () => {
   const { user } = useAuth()
   const [activeStep, setActiveStep] = useState(0)
   const { image, pickImage, uploadImage } = useImagePicker(
     "/blank-profile-picture.webp"
   )
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user?.picture) {
+      setActiveStep(2)
+    }
+    if (user?.picture && user?.latitude && user?.longitude) {
+      navigate("/mechanic/dashboard")
+    }
+  }, [])
 
   const renderStep = useCallback(() => {
     if (activeStep === 0)
@@ -61,7 +73,7 @@ const OnboardingPage = () => {
   }, [image, activeStep, user, uploadImage])
 
   return (
-    <View marginTop="100px" marginBottom="100px">
+    <View padding="100px 0" backgroundColor="white" minHeight="100vh">
       <Stepper
         steps={steps}
         activeStep={activeStep}
@@ -81,5 +93,7 @@ const OnboardingPage = () => {
     </View>
   )
 }
+
+OnboardingPage = withAuth(OnboardingPage, "Mechanic")
 
 export default OnboardingPage

@@ -10,6 +10,13 @@ const withAuth = (Component: React.FC, type: "Mechanic" | "Customer") => {
     useEffect(() => {
       console.log(user)
       if (!user || (user && user.type !== type)) navigate("/auth/login")
+      else if (
+        user &&
+        user.type === "Mechanic" &&
+        (!user.picture || !user.latitude || !user.longitude)
+      ) {
+        navigate("/onboarding")
+      }
     }, [user])
 
     if (!user || (user && user.type !== type)) return null
