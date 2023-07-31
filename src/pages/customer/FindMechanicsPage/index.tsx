@@ -65,7 +65,12 @@ const FindMechanicsPage = () => {
   const getMechanics = async () => {
     try {
       const mechanics = await DataStore.query(User, (u) =>
-        u.type.eq("Mechanic")
+        u.and((u) => [
+          u.type.eq("Mechanic"),
+          u.picture.ne(null),
+          u.latitude.ne(null),
+          u.longitude.ne(null)
+        ])
       )
       setMechanics(mechanics as UserModel[])
     } catch (error) {

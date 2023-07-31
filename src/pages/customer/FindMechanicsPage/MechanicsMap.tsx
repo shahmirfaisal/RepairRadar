@@ -14,6 +14,10 @@ const MechanicsMap = ({ mechanics }: Props) => {
     pickCurrentLocation()
   }, [])
 
+  console.log(mechanics)
+
+  console.log(pickedLocation)
+
   if (!pickedLocation) {
     return (
       <View>
