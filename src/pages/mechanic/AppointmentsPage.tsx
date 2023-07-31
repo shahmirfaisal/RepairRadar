@@ -17,6 +17,7 @@ import {
 } from "react-icons/ai"
 import { MdOutlineCancel } from "react-icons/md"
 import { BiTimeFive } from "react-icons/bi"
+import { toast } from "react-hot-toast"
 
 const AppointmentsPage = () => {
   const { user } = useAuth()
@@ -44,6 +45,7 @@ const AppointmentsPage = () => {
         appointment.id === newAppointment.id ? newAppointment : appointment
       )
     )
+    toast.success("Appointment Accepted")
   }
 
   const rejectAppointmentHandler = async (appointment: LazyAppointment) => {
@@ -58,6 +60,8 @@ const AppointmentsPage = () => {
         appointment.id === newAppointment.id ? newAppointment : appointment
       )
     )
+
+    toast.error("Appointment Rejected")
   }
 
   const completeAppointmentHandler = async (appointment: LazyAppointment) => {
@@ -72,6 +76,8 @@ const AppointmentsPage = () => {
         appointment.id === newAppointment.id ? newAppointment : appointment
       )
     )
+
+    toast.success("Appointment Completed")
   }
 
   const openReviewViewModal = (review: LazyReview) => {

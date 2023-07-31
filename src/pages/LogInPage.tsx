@@ -9,6 +9,7 @@ import { useEffect } from "react"
 const LogInPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -20,6 +21,7 @@ const LogInPage = () => {
   }, [searchParams])
 
   const loginHandler = async () => {
+    setLoading(true)
     try {
       await Auth.signIn(email, password)
       toast.success("Logged in successfully!")
@@ -36,6 +38,7 @@ const LogInPage = () => {
       }
       toast.error(error.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -56,7 +59,9 @@ const LogInPage = () => {
               setPassword(e.target.value)
           },
           Button: {
-            onClick: loginHandler
+            onClick: loginHandler,
+            isLoading: loading,
+            isDisabled: loading
           }
         }}
       />

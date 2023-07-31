@@ -111,6 +111,7 @@ const MechanicProfilePage = () => {
         </Heading>
 
         <Flex direction="column">
+          {reviews.length === 0 && <Text>No reviews yet!</Text>}
           {reviews.map((review) => (
             <Review review={review} />
           ))}

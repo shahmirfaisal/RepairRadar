@@ -16,9 +16,10 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
   const [description, setDescription] = useState("")
   const [time, setTime] = useState("")
   const { user } = useAuth()
+  const [loading, setLoading] = useState(false)
 
   const requestAppointmentHandler = async () => {
-    console.log("request appointment", description, time)
+    setLoading(true)
     try {
       if (!description.trim().length) {
         throw new Error("Description is required!")
@@ -33,7 +34,7 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
       }
 
       const customer = await DataStore.query(User, (c) => c.userId.eq(user!.id))
-      const appointment = await DataStore.save(
+      await DataStore.save(
         new Appointment({
           description,
           time,
@@ -49,6 +50,7 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
       const error = err as Error
       toast.error(error.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -68,6 +70,10 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
         overrides={{
           AppointmentRequest: {
             width: "700px"
+          },
+          Button39343188: {
+            isLoading: loading,
+            isDisabled: loading
           },
           TextAreaField: {
             value: description,

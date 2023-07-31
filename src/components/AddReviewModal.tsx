@@ -16,10 +16,12 @@ const AddReviewModal = ({
 }) => {
   const [rating, setRating] = useState(0)
   const [text, setText] = useState("")
+  const [loading, setLoading] = useState(false)
 
   console.log(appointment)
 
   const addReviewHandler = async () => {
+    setLoading(true)
     try {
       if (!rating) throw new Error("Please select a rating")
 
@@ -44,6 +46,7 @@ const AddReviewModal = ({
       const error = err as Error
       toast.error(error.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -61,6 +64,10 @@ const AddReviewModal = ({
         onAddReview={addReviewHandler}
         onCancel={onClose}
         overrides={{
+          Button3959597: {
+            isLoading: loading,
+            isDisabled: loading
+          },
           Rating39591198: {
             value: rating,
             onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

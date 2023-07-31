@@ -45,6 +45,10 @@ const ChatLayout = () => {
     setShowChats(false)
   }, [pathname])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Grid
       templateColumns={{ base: "1fr", medium: "250px 1fr" }}
@@ -94,6 +98,12 @@ const ChatLayout = () => {
           >
             All Conversations
           </Heading>
+
+          {chats.length === 0 && (
+            <Flex alignItems="center" justifyContent="center" height="86vh">
+              <Text>No Conversations</Text>
+            </Flex>
+          )}
 
           {chats.map((chat) => (
             <>

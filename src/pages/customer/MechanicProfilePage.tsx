@@ -35,6 +35,7 @@ const MechanicProfilePage = () => {
   const navigate = useNavigate()
 
   const [reviews, setReviews] = useState<LazyReview[]>([])
+  const [contactLoading, setContactLoading] = useState(false)
 
   const rating = useMemo(() => {
     return (
@@ -71,6 +72,7 @@ const MechanicProfilePage = () => {
   }, [])
 
   const contactMechanicHandler = async () => {
+    setContactLoading(true)
     try {
       const customer = (
         await DataStore.query(User, (u) => u.userId.eq(user!.id))
@@ -84,7 +86,7 @@ const MechanicProfilePage = () => {
       )
 
       if (chatExist.length > 0) {
-        console.log("CHAT ALREADY EXISTS")
+        setContactLoading(false)
         navigate(`/customer/chat/${chatExist[0].id}`)
         return
       }
@@ -96,9 +98,11 @@ const MechanicProfilePage = () => {
         })
       )
 
-      console.log("CHAT", chat)
+      setContactLoading(false)
+
       navigate(`/customer/chat/${chat.id}`)
     } catch (error) {
+      setContactLoading(false)
       toast.error(error.message)
     }
   }
@@ -154,7 +158,12 @@ const MechanicProfilePage = () => {
         </View>
 
         <Flex marginTop="50px" wrap="wrap">
-          <Button size="large" onClick={contactMechanicHandler}>
+          <Button
+            size="large"
+            onClick={contactMechanicHandler}
+            isLoading={contactLoading}
+            isDisabled={contactLoading}
+          >
             Contact Mechanic
           </Button>
           <Button

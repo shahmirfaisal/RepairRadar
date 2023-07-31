@@ -16,6 +16,7 @@ import { toast } from "react-hot-toast"
 import { Auth, DataStore } from "aws-amplify"
 import { User } from "../../models"
 import LayoutItem from "../../components/LayoutItem"
+import { useNavigate } from "react-router-dom"
 
 const MechanicProfileEditPage = () => {
   const { user, authUser, setName: setUserName } = useAuth()
@@ -32,6 +33,8 @@ const MechanicProfileEditPage = () => {
     longitude: parseFloat(user?.longitude!)
   })
   const [name, setName] = useState(user?.name as string)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const saveName = async () => {
     try {
@@ -53,6 +56,7 @@ const MechanicProfileEditPage = () => {
   }
 
   const saveProfileHandler = async () => {
+    setLoading(true)
     try {
       if (imageFile) await uploadImage()
 
@@ -60,9 +64,12 @@ const MechanicProfileEditPage = () => {
       await saveName()
 
       toast.success("Profile updated successfully!")
-    } catch (error) {
+      navigate("/mechanic/profile")
+    } catch (err) {
+      const error = err as Error
       toast.error(error.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -125,6 +132,8 @@ const MechanicProfileEditPage = () => {
         variation="primary"
         marginTop="50px"
         onClick={saveProfileHandler}
+        isLoading={loading}
+        isDisabled={loading}
       >
         Save
       </Button>

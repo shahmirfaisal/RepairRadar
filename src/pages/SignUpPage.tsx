@@ -11,10 +11,12 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("")
   const [type, setType] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const signupHandler = async () => {
+    setLoading(true)
     try {
       if (!name.trim()) throw new Error("Enter a name!")
       if (type !== "Customer" && type !== "Mechanic")
@@ -47,6 +49,7 @@ const SignUpPage = () => {
       const error = err as Error
       toast.error(error.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -83,7 +86,9 @@ const SignUpPage = () => {
               setPassword(e.target.value)
           },
           Button: {
-            onClick: signupHandler
+            onClick: signupHandler,
+            isLoading: loading,
+            isDisabled: loading
           }
         }}
       />
