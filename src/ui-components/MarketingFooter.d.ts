@@ -15,7 +15,13 @@ export declare type MarketingFooterOverridesProps = {
     Pages?: PrimitiveOverrideProps<TextProps>;
     SignUp?: PrimitiveOverrideProps<TextProps>;
     LogIn?: PrimitiveOverrideProps<TextProps>;
+    "Frame 404"?: PrimitiveOverrideProps<FlexProps>;
+    Hackathon?: PrimitiveOverrideProps<TextProps>;
+    "AWS Amplify"?: PrimitiveOverrideProps<TextProps>;
+    Hashnode?: PrimitiveOverrideProps<TextProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
+    "Frame 434"?: PrimitiveOverrideProps<FlexProps>;
+    "Built for the AWS Amplify Hackathon."?: PrimitiveOverrideProps<TextProps>;
     "Frame 433"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 447"?: PrimitiveOverrideProps<FlexProps>;
     "logo 2"?: PrimitiveOverrideProps<ViewProps>;

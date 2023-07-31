@@ -36,7 +36,7 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2023-07-31T04:11:09.893Z",
+      "lastPushTimeStamp": "2023-07-31T16:05:29.708Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiRepairRadar"
@@ -80,7 +80,7 @@
         "IdentityPoolName": "repairradar38847973_identitypool_38847973__staging",
         "UserPoolName": "repairradar38847973_userpool_38847973"
       },
-      "lastPushTimeStamp": "2023-07-31T04:11:09.911Z",
+      "lastPushTimeStamp": "2023-07-31T16:05:29.729Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/auth/repairradar38847973-cloudformation-template.json",
         "logicalId": "authrepairradar38847973"
@@ -109,7 +109,7 @@
         "Arn": "arn:aws:geo:eu-north-1:775256015443:map/map8f0e7099-staging",
         "Name": "map8f0e7099-staging"
       },
-      "lastPushTimeStamp": "2023-07-31T04:11:09.935Z",
+      "lastPushTimeStamp": "2023-07-31T16:05:29.746Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/geo/map8f0e7099-cloudformation-template.json",
         "logicalId": "geomap8f0e7099"
@@ -125,7 +125,7 @@
         "BucketName": "repairradar-storage-25cc0337152716-staging",
         "Region": "eu-north-1"
       },
-      "lastPushTimeStamp": "2023-07-31T04:11:17.040Z",
+      "lastPushTimeStamp": "2023-07-31T16:05:40.325Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-repairradar-staging-152716-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storages3repairradarstorage25cc0337"

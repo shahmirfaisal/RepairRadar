@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null)
   const [authUser, setAuthUser] = useState<any>(null)
   const [loadingCurrentUser, setLoadingCurrentUser] = useState(true)
-
+  console.log(user)
   const getCurrentUser = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser()

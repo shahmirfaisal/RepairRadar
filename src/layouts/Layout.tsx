@@ -128,7 +128,37 @@ const Layout = ({ children }: Props) => {
           "Frame 405": {
             width: "100%",
             maxWidth: "1300px",
+            margin: "0 auto",
+            wrap: "wrap"
+          },
+          "Frame 434": {
+            width: "100%",
+            maxWidth: "1300px",
             margin: "0 auto"
+          },
+          "Built for the AWS Amplify Hackathon.": {
+            as: "a",
+            target: "_blank",
+            href: "https://hashnode.com/hackathons/aws-amplify-2023",
+            style: {
+              cursor: "pointer"
+            }
+          },
+          Hashnode: {
+            as: "a",
+            target: "_blank",
+            href: "https://hashnode.com",
+            style: {
+              cursor: "pointer"
+            }
+          },
+          "AWS Amplify": {
+            as: "a",
+            target: "_blank",
+            href: "https://aws.amazon.com/amplify",
+            style: {
+              cursor: "pointer"
+            }
           },
           Divider: {
             width: "100%",

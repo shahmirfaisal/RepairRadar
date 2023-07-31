@@ -49,6 +49,11 @@ const Mechanic = ({ mechanic }: Props) => {
       onViewProfileClick={() =>
         navigate(`/customer/mechanic-profile/${mechanic.userId}`)
       }
+      overrides={{
+        "Frame 446": {
+          display: rating ? "flex" : "none"
+        }
+      }}
     />
   )
 }
