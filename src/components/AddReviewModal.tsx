@@ -1,4 +1,4 @@
-import { ComponentPropsToStylePropsMap, View } from "@aws-amplify/ui-react"
+import { View } from "@aws-amplify/ui-react"
 import AddReview from "../ui-components/AddReview"
 import { useState } from "react"
 import { LazyAppointment, Review } from "../models"
@@ -40,10 +40,8 @@ const AddReviewModal = ({
       right="0"
       bottom="0"
       backgroundColor="rgba(0,0,0,0.2)"
-      style={{ zIndex: 1000 }}
+      style={{ zIndex: 1000, justifyContent: "center", alignItems: "center" }}
       display="flex"
-      justifyContent="center"
-      alignItems="center"
     >
       <AddReview
         onAddReview={addReviewHandler}
@@ -52,12 +50,21 @@ const AddReviewModal = ({
           Rating39591198: {
             value: rating,
             onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-              const parent =
-                e.target.parentNode.parentNode.parentNode.parentNode.parentNode
-              const child = e.target.parentNode.parentNode.parentNode.parentNode
+              const targetElement = e.target as HTMLElement
 
-              if (child.classList.contains("amplify-rating-icon-container")) {
-                const rating = [...parent.children].indexOf(child) + 1
+              const parent =
+                targetElement.parentNode?.parentNode?.parentNode?.parentNode
+                  ?.parentNode
+              const child =
+                targetElement.parentNode?.parentNode?.parentNode?.parentNode
+
+              if (
+                (child! as HTMLElement).classList.contains(
+                  "amplify-rating-icon-container"
+                )
+              ) {
+                const rating =
+                  [...parent!.children].indexOf(child! as Element) + 1
                 setRating(rating)
               }
             }

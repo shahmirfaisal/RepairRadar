@@ -1,5 +1,5 @@
 import { Button, Grid, Heading, Text, View } from "@aws-amplify/ui-react"
-import "@lottiefiles/lottie-player"
+import * as LottiePlayer from "@lottiefiles/lottie-player"
 import { CiSearch } from "react-icons/ci"
 import { IconType } from "react-icons"
 import { AiOutlineEye, AiOutlineSchedule } from "react-icons/ai"
@@ -67,6 +67,7 @@ const LandingPage = () => {
           </View>
 
           <View>
+            {/* @ts-ignore */}
             <lottie-player
               src="https://lottie.host/779e75ab-5dfb-4575-8afc-c1eb2d9829c3/YjigYGE78u.json"
               background="transparent"
@@ -103,31 +104,31 @@ const LandingPage = () => {
             <Feature
               title="Find a a nearby mechanic"
               description="Search for mechanics in your area through an interactive map."
-              Icon={CiSearch}
+              Icon={CiSearch as IconType}
             />
 
             <Feature
               title="View Profile"
               description="View mechanic profiles and read genuine customer reviews."
-              Icon={AiOutlineEye}
+              Icon={AiOutlineEye as IconType}
             />
 
             <Feature
               title="Contact Mechanic"
               description="Contact the mechanic directly and discuss your needs."
-              Icon={GrContact}
+              Icon={GrContact as IconType}
             />
 
             <Feature
               title="Book an Appointment"
               description="Book an appointment with your chosen mechanic. The mechanic will accept or reject your requested appointment."
-              Icon={AiOutlineSchedule}
+              Icon={AiOutlineSchedule as IconType}
             />
 
             <Feature
               title="Provide Review"
               description="After your appointment, provide a review of your experience with a mechanic."
-              Icon={MdOutlineFeedback}
+              Icon={MdOutlineFeedback as IconType}
             />
           </Grid>
         </View>

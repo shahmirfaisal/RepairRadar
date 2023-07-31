@@ -1,13 +1,10 @@
-import { Flex, Grid, Heading, Text, View } from "@aws-amplify/ui-react"
-import SignUp from "../ui-components/SignUp"
+import { Heading, Text } from "@aws-amplify/ui-react"
 import { useState } from "react"
-import { Auth, DataStore } from "aws-amplify"
+import { Auth } from "aws-amplify"
 import { toast } from "react-hot-toast"
-import { User } from "../models"
 import LogIn from "../ui-components/LogIn"
 import { useNavigate, useSearchParams, Link } from "react-router-dom"
 import { useEffect } from "react"
-import AuthLayout from "../layouts/AuthLayout"
 
 const LogInPage = () => {
   const [email, setEmail] = useState("")
