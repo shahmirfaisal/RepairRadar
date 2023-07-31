@@ -14,13 +14,11 @@ const MechanicsMap = ({ mechanics }: Props) => {
     pickCurrentLocation()
   }, [])
 
-  console.log("PICKED LOCATION", pickedLocation)
-
   if (!pickedLocation) {
     return (
       <View>
         <Text>Provide location!</Text>
-        <Button onClick={pickCurrentLocation}>
+        <Button onClick={pickCurrentLocation} marginTop="20px">
           Provide your current location.
         </Button>
       </View>
