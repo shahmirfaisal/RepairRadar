@@ -38,8 +38,8 @@ export default function HeroLayout1(props) {
         Body: { color: "rgba(255,255,255,1)" },
         Message: {},
         Button: {},
-        HeroMessage: {},
-        Left: { backgroundColor: "rgba(29,35,53,1)" },
+        HeroMessage: { alignItems: "center" },
+        Left: { alignItems: "center", backgroundColor: "rgba(29,35,53,1)" },
         image: { width: "unset", alignSelf: "stretch" },
         Right: {},
         HeroLayout1: {},
@@ -70,7 +70,7 @@ export default function HeroLayout1(props) {
         width="720px"
         height="unset"
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         overflow="hidden"
         shrink="0"
         alignSelf="stretch"
@@ -86,7 +86,7 @@ export default function HeroLayout1(props) {
           width="unset"
           height="unset"
           justifyContent="center"
-          alignItems="center"
+          alignItems="flex-start"
           shrink="0"
           alignSelf="stretch"
           position="relative"

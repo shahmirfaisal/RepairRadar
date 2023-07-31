@@ -89,7 +89,6 @@ const FindMechanicsPage = () => {
         {mechanics.map((mechanic) => (
           <>
             <Mechanic mechanic={mechanic} key={mechanic.id} />
-            <Mechanic mechanic={mechanic} key={mechanic.id} />
           </>
         ))}
       </LayoutItem>

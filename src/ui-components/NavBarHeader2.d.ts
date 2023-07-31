@@ -10,7 +10,7 @@ import { ButtonProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-am
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NavBarHeader2OverridesProps = {
     NavBarHeader2?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 5"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 539493458"?: PrimitiveOverrideProps<FlexProps>;
     "logo 1"?: PrimitiveOverrideProps<ViewProps>;
     Vector3990732?: PrimitiveOverrideProps<IconProps>;
     Vector3990733?: PrimitiveOverrideProps<IconProps>;
@@ -19,6 +19,7 @@ export declare type NavBarHeader2OverridesProps = {
     Vector3990736?: PrimitiveOverrideProps<IconProps>;
     RepairRadar?: PrimitiveOverrideProps<TextProps>;
     actions?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 540001147"?: PrimitiveOverrideProps<FlexProps>;
     Button39493466?: PrimitiveOverrideProps<ButtonProps>;
     Button39493467?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;

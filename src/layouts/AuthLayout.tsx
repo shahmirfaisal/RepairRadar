@@ -1,40 +1,22 @@
 import { Flex, Grid, Heading } from "@aws-amplify/ui-react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 import withNoAuth from "../hoc/withNoAuth"
 import LayoutItem from "../components/LayoutItem"
 import "@lottiefiles/lottie-player"
 import NavBarHeader2 from "../ui-components/NavBarHeader2"
+import MarketingFooter from "../ui-components/MarketingFooter"
+import Layout from "./Layout"
 
 let AuthLayout: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <>
-      <NavBarHeader2
-        overrides={{
-          NavBarHeader2: {
-            width: "100%"
-          },
-          "Frame 5": {
-            onClick: () => navigate("/"),
-            style: {
-              cursor: "pointer"
-            }
-          },
-          Button39493466: {
-            onClick: () => navigate("/auth/login")
-          },
-          Button39493467: {
-            onClick: () => navigate("/auth/signup")
-          }
-        }}
-      />
-
+    <Layout>
       <Grid
         templateColumns={{ base: "1fr", medium: "1fr 1fr" }}
         minHeight="100vh"
-        padding="20px"
         gap="20px"
+        marginBottom="20px"
       >
         <LayoutItem>
           <Outlet />
@@ -58,7 +40,7 @@ let AuthLayout: React.FC = () => {
           ></lottie-player>
         </LayoutItem>
       </Grid>
-    </>
+    </Layout>
   )
 }
 
