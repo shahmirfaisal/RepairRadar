@@ -104,6 +104,7 @@ const AppointmentsPage = () => {
 
       {showAddReviewModal && appointment && (
         <AddReviewModal
+          getAppointments={getAppointments}
           onClose={() => setShowAddReviewModal(false)}
           appointment={appointment}
         />

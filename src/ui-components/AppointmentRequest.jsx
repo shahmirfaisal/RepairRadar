@@ -5,17 +5,17 @@
  **************************************************************************/
 
 /* eslint-disable */
-import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import * as React from "react"
+import { getOverrideProps } from "@aws-amplify/ui-react/internal"
 import {
   Button,
   Flex,
   Heading,
   TextAreaField,
-  TextField,
-} from "@aws-amplify/ui-react";
+  TextField
+} from "@aws-amplify/ui-react"
 export default function AppointmentRequest(props) {
-  const { title, onRequest, onCancel, overrides, ...rest } = props;
+  const { title, onRequest, onCancel, overrides, ...rest } = props
   return (
     <Flex
       gap="48px"
@@ -164,5 +164,5 @@ export default function AppointmentRequest(props) {
         </Flex>
       </Flex>
     </Flex>
-  );
+  )
 }

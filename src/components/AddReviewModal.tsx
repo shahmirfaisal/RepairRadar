@@ -3,13 +3,16 @@ import AddReview from "../ui-components/AddReview"
 import { useState } from "react"
 import { LazyAppointment, Review } from "../models"
 import { DataStore } from "aws-amplify"
+import { toast } from "react-hot-toast"
 
 const AddReviewModal = ({
   onClose,
-  appointment
+  appointment,
+  getAppointments
 }: {
   onClose: () => void
   appointment: LazyAppointment
+  getAppointments: () => Promise<void>
 }) => {
   const [rating, setRating] = useState(0)
   const [text, setText] = useState("")
@@ -17,19 +20,30 @@ const AddReviewModal = ({
   console.log(appointment)
 
   const addReviewHandler = async () => {
-    const customer = await appointment.Customer
-    const mechanic = await appointment.Mechanic
-    const review = await DataStore.save(
-      new Review({
-        rating,
-        text,
-        Appointment: appointment,
-        Customer: customer,
-        Mechanic: mechanic
-      })
-    )
-    console.log("review", review)
-    onClose()
+    try {
+      if (!rating) throw new Error("Please select a rating")
+
+      if (!text.trim().length) throw new Error("Please enter a review")
+
+      const customer = await appointment.Customer
+      const mechanic = await appointment.Mechanic
+      const review = await DataStore.save(
+        new Review({
+          rating,
+          text,
+          Appointment: appointment,
+          Customer: customer,
+          Mechanic: mechanic
+        })
+      )
+      console.log("review", review)
+      toast.success("Review Added")
+      await getAppointments()
+      onClose()
+    } catch (err) {
+      const error = err as Error
+      toast.error(error.message)
+    }
   }
 
   return (

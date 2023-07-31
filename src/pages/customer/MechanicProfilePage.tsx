@@ -15,7 +15,7 @@ import {
   Chat,
   LazyUser
 } from "../../models"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { DataStore } from "aws-amplify"
 import { toast } from "react-hot-toast"
 import { MapContainer, Marker, TileLayer } from "react-leaflet"
@@ -32,6 +32,7 @@ const MechanicProfilePage = () => {
   const { id } = useParams()
   const [showModal, setShowModal] = useState(false)
   const { user } = useAuth()
+  const navigate = useNavigate()
 
   const [reviews, setReviews] = useState<LazyReview[]>([])
 
@@ -84,6 +85,7 @@ const MechanicProfilePage = () => {
 
       if (chatExist.length > 0) {
         console.log("CHAT ALREADY EXISTS")
+        navigate(`/customer/chat/${chatExist[0].id}`)
         return
       }
 
@@ -95,6 +97,7 @@ const MechanicProfilePage = () => {
       )
 
       console.log("CHAT", chat)
+      navigate(`/customer/chat/${chat.id}`)
     } catch (error) {
       toast.error(error.message)
     }
@@ -170,6 +173,7 @@ const MechanicProfilePage = () => {
         </Heading>
 
         <Flex direction="column">
+          {reviews.length === 0 && <Text>No reviews yet.</Text>}
           {reviews.map((review) => (
             <Review review={review} />
           ))}

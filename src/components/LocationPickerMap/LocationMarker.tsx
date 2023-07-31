@@ -1,10 +1,16 @@
 import { useEffect } from "react"
 import { Marker, Popup, useMapEvents } from "react-leaflet"
+import { Icon } from "leaflet"
 
 interface Props {
   pickedLocation: LocationType | null
   setPickedLocation: React.Dispatch<React.SetStateAction<LocationType | null>>
 }
+
+const icon = new Icon({
+  iconUrl: "/marker.svg",
+  iconSize: [35, 35]
+})
 
 export function LocationMarker({ pickedLocation, setPickedLocation }: Props) {
   const map = useMapEvents({
@@ -34,6 +40,7 @@ export function LocationMarker({ pickedLocation, setPickedLocation }: Props) {
         lat: pickedLocation.latitude,
         lng: pickedLocation.longitude
       }}
+      icon={icon}
     >
       <Popup>Your shop location</Popup>
     </Marker>

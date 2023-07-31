@@ -1,9 +1,17 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { Icon } from "leaflet"
+import { Text } from "@aws-amplify/ui-react"
+import { Link } from "react-router-dom"
 
 interface Props {
   center: [number, number]
   markers: MarkerType[]
 }
+
+const icon = new Icon({
+  iconUrl: "/marker.svg",
+  iconSize: [35, 35]
+})
 
 const Map = ({ center, markers }: Props) => {
   return (
@@ -14,8 +22,26 @@ const Map = ({ center, markers }: Props) => {
       />
 
       {markers.map((marker) => (
-        <Marker key={marker.label} position={marker.position}>
-          <Popup>{marker.label}</Popup>
+        <Marker
+          key={marker.label}
+          position={marker.position}
+          icon={icon}
+          eventHandlers={{
+            click() {
+              console.log("HELLO")
+            }
+          }}
+        >
+          <Popup>
+            <Text>
+              <b>{marker.label}</b>
+            </Text>
+            {marker.userId && (
+              <Link to={`/customer/mechanic-profile/${marker.userId}`}>
+                Visit Profile
+              </Link>
+            )}
+          </Popup>
         </Marker>
       ))}
     </MapContainer>

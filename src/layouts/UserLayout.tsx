@@ -32,7 +32,7 @@ const UserLayout = ({ children }: Props) => {
     >
       <View
         display={{ base: showSidebar ? "block" : "none", medium: "block" }}
-        style={{ zIndex: "10000" }}
+        style={{ zIndex: "1000" }}
         position={{ base: "fixed", medium: "relative" }}
         top="0"
         left="0"

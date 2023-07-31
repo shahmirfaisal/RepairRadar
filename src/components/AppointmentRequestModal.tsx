@@ -5,6 +5,7 @@ import { Appointment, LazyUser, User } from "../models"
 import { DataStore } from "aws-amplify"
 import { useAuth } from "../context/AuthContext"
 import { toast } from "react-hot-toast"
+import moment from "moment"
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -19,6 +20,18 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
   const requestAppointmentHandler = async () => {
     console.log("request appointment", description, time)
     try {
+      if (!description.trim().length) {
+        throw new Error("Description is required!")
+      }
+
+      if (!time.trim().length) {
+        throw new Error("Time is required!")
+      }
+
+      if (moment(time).isBefore(moment())) {
+        throw new Error("Pick a time in the future!")
+      }
+
       const customer = await DataStore.query(User, (c) => c.userId.eq(user!.id))
       const appointment = await DataStore.save(
         new Appointment({
@@ -33,7 +46,8 @@ const AppointmentRequestModal = ({ setShowModal, mechanic }: Props) => {
       toast.success("Appointment requested!")
       setShowModal(false)
     } catch (err) {
-      toast.error(err.message)
+      const error = err as Error
+      toast.error(error.message)
     }
   }
 

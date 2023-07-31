@@ -9,4 +9,5 @@ interface MarkerType {
     lng: number
   }
   label: string
+  userId?: string
 }
