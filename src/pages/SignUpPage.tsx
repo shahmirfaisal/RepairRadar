@@ -1,11 +1,10 @@
-import { Flex, Grid, Heading, Text, View } from "@aws-amplify/ui-react"
+import { Heading, Text } from "@aws-amplify/ui-react"
 import SignUp from "../ui-components/SignUp"
 import { useState } from "react"
 import { Auth, DataStore } from "aws-amplify"
 import { toast } from "react-hot-toast"
 import { User } from "../models"
 import { Link, useNavigate } from "react-router-dom"
-import AuthLayout from "../layouts/AuthLayout"
 
 const SignUpPage = () => {
   const [name, setName] = useState("")
@@ -44,7 +43,8 @@ const SignUpPage = () => {
       console.log(user)
       toast.success("Signed up successfully!")
       navigate(`/auth/email-verification?email=${encodeURIComponent(email)}`)
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error
       toast.error(error.message)
     }
   }
